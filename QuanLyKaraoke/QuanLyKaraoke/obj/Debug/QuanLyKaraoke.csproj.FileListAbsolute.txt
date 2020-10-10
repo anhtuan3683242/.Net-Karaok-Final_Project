@@ -81,8 +81,6 @@ C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraok
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CopyComplete
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
-C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
-C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\QuanLyKaraoke.dll.config
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\QuanLyKaraoke.dll
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\QuanLyKaraoke.pdb
@@ -168,3 +166,5 @@ D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CoreC
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CopyComplete
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
+C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
+C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache

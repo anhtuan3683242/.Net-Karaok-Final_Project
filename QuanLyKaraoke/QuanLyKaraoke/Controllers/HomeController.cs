@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyKaraoke.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace QuanLyKaraoke.Controllers
 {
     public class HomeController : Controller
     {
+        public QuanLyContext db = new QuanLyContext();
         public ActionResult Index()
         {
             return View();
@@ -33,7 +35,7 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Admin_index()
         {
-            return View();
+            return View(new BookingDAO().getList());
         }
     }
 }

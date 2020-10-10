@@ -14,9 +14,8 @@ namespace QuanLyKaraoke.Models
         public string Name_Cus { get; set; }
         public int Phone_Cus { get; set; }
         public int Num_Cus { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
-        public DateTime Duration { get; set; }
+        public DateTime DateTime { get; set; }
+        public int Duration { get; set; }
         public int Total { get; set; }
         //Cac lien ket
         public virtual Order Order { get; set; }
