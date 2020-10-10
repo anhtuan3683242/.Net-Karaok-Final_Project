@@ -120,6 +120,7 @@ label #sidebar_btn:hover{
     display: none;
 }
 #tab,h1{
+    width: 81%;
     margin-left: 250px;
     transition: 0.5s;
     transition-property: margin-left;
@@ -127,7 +128,7 @@ label #sidebar_btn:hover{
 
 #check:checked ~ #tab{
     margin-left: 0px;
-
+    width: 100%;
 }
 #check:checked ~ h1{
     margin-left: 0px;
