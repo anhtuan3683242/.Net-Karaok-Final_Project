@@ -30,5 +30,10 @@ namespace QuanLyKaraoke.Controllers
 
             return View();
         }
+
+        public ActionResult Admin_index()
+        {
+            return View();
+        }
     }
 }
