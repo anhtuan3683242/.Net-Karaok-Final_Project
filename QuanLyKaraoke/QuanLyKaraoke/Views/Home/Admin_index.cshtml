@@ -90,7 +90,7 @@
                         <button>Edit</button>
                         <button>Order</button>
                         <button>Pay</button>
-                        <button>Delete</button>
+                        <a href="#" class="btn btn-danger btnDel" data="@booking.PayID">Delete</a>
                     </td>
                 </tr>
             }
@@ -103,9 +103,38 @@
         var date = d.toDateString();
         var res = date + " " + h + ":" + m;
         document.getElementById("date_time").innerHTML = res;
-        
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.btnDel').click(function (e) {
+                //bỏ tác dụng bấm mặc định
+                e.preventDefault();
+                var atag = $(this);
+                var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
+                if (!confirm("Bạn có chắc chắn xóa"))
+                    return;
+                $.ajax(
+                    {
+                        url: '/Home/Delete/' + idBooking + "/",
+                        method: "post",
+                        success: function (data) {
+                            if (data.isvalid) {
+                                atag.closest('tr').remove();//Lấy thẻ tr gần với thẻ a nhất và xóa
+                                return;
+                            }
+                            alert(data.msg);
+                        },
+                        failed: function () {
+
+                        }
+                    }
+                );
+            });
+        });
     </script>
 </body>
+
+
 
 </html>
 
