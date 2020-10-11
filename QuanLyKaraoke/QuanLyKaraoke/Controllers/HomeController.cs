@@ -43,6 +43,7 @@ namespace QuanLyKaraoke.Controllers
         public JsonResult Delete(string id)
         {
             var book = db.Bookings.FirstOrDefault(l => l.PayID == id);
+
             if (book == null)
             {
                 return Json(new { isvalid = false, msg = "không tìm thấy thông tin máy" });
