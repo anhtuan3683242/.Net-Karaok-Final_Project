@@ -22,6 +22,11 @@ namespace QuanLyKaraoke.Controllers
 
             return View();
         }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
         public ActionResult Not_Found404()
         {
             return View();
