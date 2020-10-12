@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<QuanLyKaraoke.Models.Booking>
 @{
     ViewBag.Title = "Admin Home Page";
-    Layout = null;
+    
 }
 
 <!DOCTYPE html>
@@ -20,31 +20,7 @@
     <title>Admin_Home_Page</title>
 </head>
 <body>
-    <input type="checkbox" id="check">
-    <div class="header">
-        <label for="check">
-            <i class="fas fa-bars" id="sidebar_btn"></i>
-        </label>
-        <div class="left_area">
-            <h3 id="date_time"></h3>
-        </div>
-        <div class="right_area">
-            <h3>@ViewBag.Title</h3>
-        </div>
-    </div>
-    <div class="sidebar">
-        <center>
-            <img src="~/Content/image/img.jpg" class="profile_image" alt="">
-            <h4>CuongPVQ</h4>
-            <h5>Staff</h5>
-        </center>
-        <a href="#"><i class="far fa-id-card"></i><span>Acount</span></a>
-        <a href="#"><i class="fa fa-book" aria-hidden="true"></i>Room Management</a>
-        <a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i>Menu Management</a>
-        <a href="#"><i class="fa fa-money" aria-hidden="true"></i>Revenue</a>
 
-        <a href="#"><i class="fas fa-sign-out-alt"></i><span>Log Out</span></a>
-    </div>
     <h1>Manage Booking Orders</h1>
 
     <hr>
@@ -90,7 +66,7 @@
                         <button>Edit</button>
                         <button>Order</button>
                         <button>Pay</button>
-                        <button>Delete</button>
+                        <a href="#" class="btn btn-danger btnDel" data="@booking.PayID">Cancel</a>
                     </td>
                 </tr>
             }
@@ -103,9 +79,40 @@
         var date = d.toDateString();
         var res = date + " " + h + ":" + m;
         document.getElementById("date_time").innerHTML = res;
-        
     </script>
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                $('.btnDel').click(function (e) {
+                    //bỏ tác dụng bấm mặc định
+                    e.preventDefault();
+                    var atag = $(this);
+                    var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
+                    if (!confirm("Bạn có chắc chắn xóa" + idBooking))
+                        return;
+                    $.ajax(
+                        {
+                            url: '/Home/Delete/' + idBooking + '/',
+                            method: "post",
+                            success: function (data) {
+                                if (data.isvalid) {
+                                    atag.closest('tr').remove();//Lấy thẻ tr gần với thẻ a nhất và xóa
+                                    return;
+                                }
+                                alert(data.msg);
+                            },
+                            failed: function () {
+
+                            }
+                        }
+                    );
+                });
+            });
+        </script>
+    }
 </body>
+
+
 
 </html>
 
