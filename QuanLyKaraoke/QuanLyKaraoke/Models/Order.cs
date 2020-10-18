@@ -13,6 +13,6 @@ namespace QuanLyKaraoke.Models
         public int O_Quantity { get; set; }
         //cac lien ket
         
-        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual ICollection<Order_Detail> Order_Details { get; set; }
     }
 }

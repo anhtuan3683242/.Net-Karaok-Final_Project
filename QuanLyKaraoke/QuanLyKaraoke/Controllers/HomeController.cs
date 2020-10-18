@@ -28,7 +28,15 @@ namespace QuanLyKaraoke.Controllers
             return View();
         }
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
        
+=======
+        
+>>>>>>> Stashed changes
+=======
+        
+>>>>>>> Stashed changes
         public ActionResult Not_Found404()
         {
             return View();

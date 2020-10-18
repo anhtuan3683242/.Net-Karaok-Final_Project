@@ -12,8 +12,8 @@ namespace QuanLyKaraoke.Models
         public string Food_ID { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
-        public int F_Quantity { get; set; }
+        public int Stock { get; set; }
         // cac lien ket
-        public virtual Order Order { get; set; }
+        
     }
 }
