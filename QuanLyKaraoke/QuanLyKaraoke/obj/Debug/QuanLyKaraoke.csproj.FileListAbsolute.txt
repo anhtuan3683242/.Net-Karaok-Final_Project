@@ -160,11 +160,11 @@ D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\Newtonsoft.Json.xml
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\Antlr3.Runtime.pdb
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csprojAssemblyReference.cache
-D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
-D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CoreCompileInputs.cache
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CopyComplete
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
