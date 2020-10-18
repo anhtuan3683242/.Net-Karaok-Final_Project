@@ -131,9 +131,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010121719387_Init.cs" />
-    <Compile Include="Migrations\202010121719387_Init.designer.cs">
-      <DependentUpon>202010121719387_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202010181420421_Init.cs" />
+    <Compile Include="Migrations\202010181420421_Init.designer.cs">
+      <DependentUpon>202010181420421_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010181445243_add_Price_room.cs" />
+    <Compile Include="Migrations\202010181445243_add_Price_room.designer.cs">
+      <DependentUpon>202010181445243_add_Price_room.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -144,6 +148,8 @@
     <Compile Include="Models\MenuDAO.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDAO.cs" />
+    <Compile Include="Models\Order_Detail.cs" />
+    <Compile Include="Models\Order_DetailDAO.cs" />
     <Compile Include="Models\QuanLyContext.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomDAO.cs" />
@@ -312,8 +318,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010121719387_Init.resx">
-      <DependentUpon>202010121719387_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010181420421_Init.resx">
+      <DependentUpon>202010181420421_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010181445243_add_Price_room.resx">
+      <DependentUpon>202010181445243_add_Price_room.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

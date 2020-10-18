@@ -23,55 +23,50 @@
 
     <h1>Manage Booking Orders</h1>
 
-    <hr>
-
-    <div class="filter_btn">
-        <button>Booking</button>
-        <button>Using</button>
-        <button>Available</button>
-        <button>All</button>
-    </div>
 
     <table id="tab" class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">Room ID</th>
                 <th scope="col">Start Time</th>
-                <th scope="col">Status</th>
+                <th scope="col">Booking Status</th>
                 <th scope="col">Name</th>
+                <th scope="col">Phone</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var booking in Model)
             {
-                <tr>
-                    <th scope="row">@booking.Room.RoomID.ToString()</th>
-                    <td>@booking.DateTime</td>
-                    @if (booking.Room.Status == 1)
-                    {
-                        <td style="color:green">Available</td>
-                    }
-                    @if (booking.Room.Status == 2)
-                    {
-                        <td style="color:yellowgreen">Booking</td>
-                    }
-                    @if (booking.Room.Status == 3)
-                    {
-                        <td style="color:red">Using</td>
-                    }
+            <tr>
+                <th scope="row">@booking.Room.RoomID.ToString()</th>
+                <td>@booking.DateTime</td>
+                @if (booking.P_Status == 1)
+                {
+                    <td style="color:yellowgreen">wait for payment</td>
+                }
+                @if (booking.P_Status == 2)
+                {
+                    <td style="color:green">payment success</td>
+                }
 
-                    <td>@booking.Name_Cus</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Order</button>
-                        <button>Pay</button>
-                        <a href="#" class="btn btn-danger btnDel" data="@booking.PayID">Cancel</a>
-                    </td>
-                </tr>
+                @if (booking.P_Status == 3)
+                {
+                    <td style="color:red">was cancel</td>
+                }
+                <td>@booking.Name_Cus</td>
+                <td>@booking.Phone_Cus</td>
+                <td>
+                    <button>Check in</button>
+                    <button>Edit</button>
+                    <button>Order</button>
+                    <a href="#" class="btn btn-danger btnDel" data="@booking.PayID">Cancel</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
+    <button>Add New</button>
     <script>
         var d = new Date();
         var h = d.getHours();
