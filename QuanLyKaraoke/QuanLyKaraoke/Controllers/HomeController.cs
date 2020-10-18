@@ -28,15 +28,6 @@ namespace QuanLyKaraoke.Controllers
             return View();
         }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-       
-=======
-        
->>>>>>> Stashed changes
-=======
-        
->>>>>>> Stashed changes
         public ActionResult Not_Found404()
         {
             return View();
@@ -51,6 +42,7 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Admin_index()
         {
+            
             return View(new BookingDAO().getList());
         }
 

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<QuanLyKaraoke.Models.Room>
+@{
+    ViewBag.Title = "Room_Management_page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/css/admin_hp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css" integrity="sha512-NtU/Act0MEcVPyqC153eyoq9L+UHkd0s22FjIaKByyA6KtZPrkm/O5c5xzaia4pyCfReCS634HyQ7tJwKNxC/g==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <title>Room Management Page</title>
+</head>
+<body>
+
+    <h1>Manage Rooms</h1>
+
+
+    <table id="tab" class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Room ID</th>
+                <th scope="col">Room Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Rooms in Model)
+            {
+                <tr>
+                    <th scope="row">@Rooms.RoomID</th>
+                    <td>@Rooms.RoomType</td>
+
+                    @if (Rooms.Status == 1)
+                    {
+                        <td style="color:green"> Availabe</td>
+                    }
+                    @if (Rooms.Status == 2)
+                    {
+                        <td style="color:greenyellow"> Booking</td>
+                    }
+                    @if (Rooms.Status == 3)
+                    {
+                        <td style="color:red"> Using</td>
+                    }
+                    <td>@Rooms.R_Price VNĐ</td>
+                    <td>
+                        <button>Edit</button>
+                        <a href="#" class="btn btn-danger btnDel" data="@Rooms.RoomID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button>Add New</button>
+    <script>
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        var date = d.toDateString();
+        var res = date + " " + h + ":" + m;
+        document.getElementById("date_time").innerHTML = res;
+    </script>
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                $('.btnDel').click(function (e) {
+                    //bỏ tác dụng bấm mặc định
+                    e.preventDefault();
+                    var atag = $(this);
+                    var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
+                    if (!confirm("Bạn có chắc chắn xóa" + idBooking))
+                        return;
+                    $.ajax(
+                        {
+                            url: '/Room/Delete/' + idBooking + '/',
+                            method: "post",
+                            success: function (data) {
+                                if (data.isvalid) {
+                                    atag.closest('tr').remove();//Lấy thẻ tr gần với thẻ a nhất và xóa
+                                    return;
+                                }
+                                alert(data.msg);
+                            },
+                            failed: function () {
+
+                            }
+                        }
+                    );
+                });
+            });
+        </script>
+    }
+</body>
+
+
+
+</html>
+
