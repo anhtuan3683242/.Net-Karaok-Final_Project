@@ -13,5 +13,9 @@ namespace QuanLyKaraoke.Models
         {
             return db.Rooms.FirstOrDefault(r=>r.RoomID==room.RoomID).RoomID;
         }
+        public List<Room> getList()
+        {
+            return db.Rooms.OrderBy(r => r.RoomID).ToList();
+        }
     }
 }

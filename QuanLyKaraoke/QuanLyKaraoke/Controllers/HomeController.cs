@@ -42,6 +42,7 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Admin_index()
         {
+            
             return View(new BookingDAO().getList());
         }
 
