@@ -56,9 +56,9 @@ label{
     transition: 0.5s;
     transition-property: left;
 }
-.sidebar .profile_image{
-    width: 150px;
-    height: 150px;
+.sidebar .profile_image {
+    width: 100px;
+    height: 100px;
     border-radius: 100px;
     margin-bottom: 10px;
 }
@@ -122,6 +122,27 @@ label #sidebar_btn:hover{
     margin-left: 250px;
     transition: 0.5s;
     transition-property: margin-left width;
+}
+
+#tab2 {
+    width: 100%;
+}
+
+p {
+    font-weight: bold;
+}
+
+#form_post {
+    margin-left: 250px;
+    transition: 0.5s;
+    transition-property: margin-left width;
+    width: 80%;
+}
+
+
+#check:checked ~ #form_post {
+    margin-left: 0px;
+    width: 100%;
 }
 
 #check:checked ~ #tab{

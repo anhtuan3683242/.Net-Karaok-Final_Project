@@ -170,3 +170,5 @@ C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraok
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.add_Price_room.resources
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.add_Price_room.resources
+C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\bin\Syncfusion.EJ2.dll
+C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\bin\Syncfusion.Licensing.dll
