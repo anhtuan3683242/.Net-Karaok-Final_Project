@@ -18,7 +18,6 @@ label{
     margin-right: 40px;
 }
 .left_area h3{
-    position: ;
     color: #fff;
     margin: 0;
     text-transform: uppercase;
@@ -33,7 +32,6 @@ label{
     margin-right: 40px;
 }
 .right_area h3{
-    position: ;
     color: #fff;
     margin: 0;
     text-transform: uppercase;
@@ -136,4 +134,15 @@ label #sidebar_btn:hover{
 
 #check{
     display: none;
+}
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding-top: 10px;
+    height: 40px;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
 }
