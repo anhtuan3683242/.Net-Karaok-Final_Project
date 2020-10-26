@@ -7,13 +7,13 @@ namespace QuanLyKaraoke.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class add_Price_room : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_Price_room));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010181445243_add_Price_room"; }
+            get { return "202010260103040_Init"; }
         }
         
         string IMigrationMetadata.Source

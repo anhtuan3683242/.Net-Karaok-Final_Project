@@ -1,10 +1,13 @@
-﻿
-@{
-    ViewBag.Title = "Add_new_booking";
 
-}
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add_new_booking</title>
+    <link rel="stylesheet" href="jquery.datetimepicker.min.css">
+    <script src="jquery.datetimepicker.full.js"></script>
+    <script src="jquery.js"></script>
+</head>
+<body>
     <h1>Add new booking</h1>
     <form id="form_post" action="#" method="post">
         <table class="table" id="tab2">
@@ -51,14 +54,8 @@
     </form>
         
 
-    @section scripts {
+
         <script>
-            var d = new Date();
-            var h = d.getHours();
-            var m = d.getMinutes();
-            var date = d.toDateString();
-            var res = date + " " + h + ":" + m;
-            document.getElementById("date_time").innerHTML = res;
 
 
             var today = new Date();
@@ -71,10 +68,13 @@
 
             document.getElementById("datetime").value = today;
 
-            $('.datetime').datetimepicker({
+            $(".datetime").datetimepicker({
                 step: 30,
                 value: today
             });
         </script>
-    }
+    
 
+
+</body>
+</html>
