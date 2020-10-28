@@ -3,87 +3,124 @@
     ViewBag.Title = "Room_Management_page";
 }
 
+<h1>Manage Rooms</h1>
+
+<div class="pull-right">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add New
+    </button>
+</div>
 
 
-    <h1>Manage Rooms</h1>
-
-
-    <table id="tab" class="table table-hover">
-        <thead>
+<table id="tab" class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Room ID</th>
+            <th scope="col">Room Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Rooms in Model)
+        {
             <tr>
-                <th scope="col">Room ID</th>
-                <th scope="col">Room Type</th>
-                <th scope="col">Status</th>
-                <th scope="col">Price</th>
-                <th scope="col"></th>
+                <th scope="row">@Rooms.RoomID</th>
+                <td>@Rooms.RoomType</td>
+
+                @if (Rooms.Status == 1)
+                {
+                    <td style="color:green"> Availabe</td>
+                }
+                @if (Rooms.Status == 2)
+                {
+                    <td style="color:greenyellow"> Booking</td>
+                }
+                @if (Rooms.Status == 3)
+                {
+                    <td style="color:red"> Using</td>
+                }
+                <td>@Rooms.R_Price VNĐ</td>
+                <td>
+                    <button>Edit</button>
+                    <a href="#" class="btn btn-danger btnDel" data="@Rooms.RoomID">Delete</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var Rooms in Model)
-            {
-                <tr>
-                    <th scope="row">@Rooms.RoomID</th>
-                    <td>@Rooms.RoomType</td>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Room</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Room ID</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Type</label>
+                        <select class="form-control" id="message-text">
+                            <option>Std</option>
+                            <option>Vip</option>
+                            <option>Luxury</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">ADD</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    @if (Rooms.Status == 1)
-                    {
-                        <td style="color:green"> Availabe</td>
-                    }
-                    @if (Rooms.Status == 2)
-                    {
-                        <td style="color:greenyellow"> Booking</td>
-                    }
-                    @if (Rooms.Status == 3)
-                    {
-                        <td style="color:red"> Using</td>
-                    }
-                    <td>@Rooms.R_Price VNĐ</td>
-                    <td>
-                        <button>Edit</button>
-                        <a href="#" class="btn btn-danger btnDel" data="@Rooms.RoomID">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <button>Add New</button>
+<script>
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    var date = d.toDateString();
+    var res = date + " " + h + ":" + m;
+    document.getElementById("date_time").innerHTML = res;
+</script>
+@section scripts{
     <script>
-        var d = new Date();
-        var h = d.getHours();
-        var m = d.getMinutes();
-        var date = d.toDateString();
-        var res = date + " " + h + ":" + m;
-        document.getElementById("date_time").innerHTML = res;
-    </script>
-    @section scripts{
-        <script>
-            $(document).ready(function () {
-                $('.btnDel').click(function (e) {
-                    //bỏ tác dụng bấm mặc định
-                    e.preventDefault();
-                    var atag = $(this);
-                    var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
-                    if (!confirm("Bạn có chắc chắn xóa" + idBooking))
-                        return;
-                    $.ajax(
-                        {
-                            url: '/Room/Delete/' + idBooking + '/',
-                            method: "post",
-                            success: function (data) {
-                                if (data.isvalid) {
-                                    atag.closest('tr').remove();//Lấy thẻ tr gần với thẻ a nhất và xóa
-                                    return;
-                                }
-                                alert(data.msg);
-                            },
-                            failed: function () {
-
+        $(document).ready(function () {
+            $('.btnDel').click(function (e) {
+                //bỏ tác dụng bấm mặc định
+                e.preventDefault();
+                var atag = $(this);
+                var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
+                if (!confirm("Bạn có chắc chắn xóa" + idBooking))
+                    return;
+                $.ajax(
+                    {
+                        url: '/Room/Delete/' + idBooking + '/',
+                        method: "post",
+                        success: function (data) {
+                            if (data.isvalid) {
+                                atag.closest('tr').remove();//Lấy thẻ tr gần với thẻ a nhất và xóa
+                                return;
                             }
+                            alert(data.msg);
+                        },
+                        failed: function () {
+
                         }
-                    );
-                });
+                    }
+                );
             });
-        </script>
-    }
+        });
+    </script>
+}
+
 
 

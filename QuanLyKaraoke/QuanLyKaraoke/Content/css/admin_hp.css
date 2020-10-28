@@ -167,3 +167,33 @@ footer {
     position: fixed;
     z-index: 1;
 }
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.add-btn {
+    position: relative !important;
+    display: inline-block !important;
+    margin: 40px 0 !important;
+    color: #2E7D32 !important;
+    font-size: 24px !important;
+    text-decoration: none !important;
+    transition:  0.5s !important;
+    letter-spacing: 1px !important;
+    overflow: hidden !important;
+    padding: 15px 30px !important;
+}
+
+.add-btn:hover {
+    background-color: #2E7D32 !important;
+    color: white !important;
+    box-shadow: 0 0 5px #2E7D32,
+                0 0 25px #2E7D32,
+                0 0 50px #2E7D32,
+                0 0 200px #2E7D32;
+}
