@@ -82,6 +82,7 @@
                     {
                         RoomID = c.String(nullable: false, maxLength: 128),
                         RoomType = c.String(),
+                        R_Price = c.Int(nullable: false),
                         Status = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.RoomID);
