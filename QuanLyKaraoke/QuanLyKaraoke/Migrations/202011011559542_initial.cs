@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -27,19 +27,19 @@
                         PayID = c.String(nullable: false, maxLength: 128),
                         Name_Cus = c.String(),
                         Phone_Cus = c.Int(nullable: false),
-                        Num_Cus = c.Int(nullable: false),
+                        Amount_Cus = c.Int(nullable: false),
                         P_Status = c.Int(nullable: false),
                         DateTime = c.DateTime(nullable: false),
                         Duration = c.Int(nullable: false),
                         Total = c.Int(nullable: false),
-                        Order_Order_ID = c.String(maxLength: 128),
-                        Room_RoomID = c.String(maxLength: 128),
+                        Order_ID = c.String(maxLength: 128),
+                        RoomID = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.PayID)
-                .ForeignKey("dbo.Orders", t => t.Order_Order_ID)
-                .ForeignKey("dbo.Rooms", t => t.Room_RoomID)
-                .Index(t => t.Order_Order_ID)
-                .Index(t => t.Room_RoomID);
+                .ForeignKey("dbo.Orders", t => t.Order_ID)
+                .ForeignKey("dbo.Rooms", t => t.RoomID)
+                .Index(t => t.Order_ID)
+                .Index(t => t.RoomID);
             
             CreateTable(
                 "dbo.Orders",
@@ -56,14 +56,14 @@
                     {
                         OD_ID = c.String(nullable: false, maxLength: 128),
                         Quantity = c.Int(nullable: false),
-                        Menu_Food_ID = c.String(maxLength: 128),
-                        Order_Order_ID = c.String(maxLength: 128),
+                        Order_ID = c.String(maxLength: 128),
+                        Food_ID = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.OD_ID)
-                .ForeignKey("dbo.Menus", t => t.Menu_Food_ID)
-                .ForeignKey("dbo.Orders", t => t.Order_Order_ID)
-                .Index(t => t.Menu_Food_ID)
-                .Index(t => t.Order_Order_ID);
+                .ForeignKey("dbo.Menus", t => t.Food_ID)
+                .ForeignKey("dbo.Orders", t => t.Order_ID)
+                .Index(t => t.Order_ID)
+                .Index(t => t.Food_ID);
             
             CreateTable(
                 "dbo.Menus",
@@ -91,14 +91,14 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Bookings", "Room_RoomID", "dbo.Rooms");
-            DropForeignKey("dbo.Bookings", "Order_Order_ID", "dbo.Orders");
-            DropForeignKey("dbo.Order_Detail", "Order_Order_ID", "dbo.Orders");
-            DropForeignKey("dbo.Order_Detail", "Menu_Food_ID", "dbo.Menus");
-            DropIndex("dbo.Order_Detail", new[] { "Order_Order_ID" });
-            DropIndex("dbo.Order_Detail", new[] { "Menu_Food_ID" });
-            DropIndex("dbo.Bookings", new[] { "Room_RoomID" });
-            DropIndex("dbo.Bookings", new[] { "Order_Order_ID" });
+            DropForeignKey("dbo.Bookings", "RoomID", "dbo.Rooms");
+            DropForeignKey("dbo.Bookings", "Order_ID", "dbo.Orders");
+            DropForeignKey("dbo.Order_Detail", "Order_ID", "dbo.Orders");
+            DropForeignKey("dbo.Order_Detail", "Food_ID", "dbo.Menus");
+            DropIndex("dbo.Order_Detail", new[] { "Food_ID" });
+            DropIndex("dbo.Order_Detail", new[] { "Order_ID" });
+            DropIndex("dbo.Bookings", new[] { "RoomID" });
+            DropIndex("dbo.Bookings", new[] { "Order_ID" });
             DropTable("dbo.Rooms");
             DropTable("dbo.Menus");
             DropTable("dbo.Order_Detail");
