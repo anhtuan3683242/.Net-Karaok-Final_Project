@@ -140,9 +140,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010260103040_Init.cs" />
-    <Compile Include="Migrations\202010260103040_Init.designer.cs">
-      <DependentUpon>202010260103040_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202011011014527_init.cs" />
+    <Compile Include="Migrations\202011011014527_init.designer.cs">
+      <DependentUpon>202011011014527_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -168,6 +168,7 @@
     <Content Include="Content\css\admin_hp.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\util.css" />
+    <Content Include="Content\extend.css" />
     <Content Include="Content\fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
@@ -209,6 +210,7 @@
     <Content Include="Content\vendor\daterangepicker\daterangepicker.js" />
     <Content Include="Content\vendor\daterangepicker\moment.js" />
     <Content Include="Content\vendor\daterangepicker\moment.min.js" />
+    <Content Include="Content\extend.js" />
     <Content Include="Content\vendor\jquery\jquery-3.2.1.min.js" />
     <Content Include="Content\vendor\perfect-scrollbar\perfect-scrollbar.css" />
     <Content Include="Content\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
@@ -332,8 +334,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010260103040_Init.resx">
-      <DependentUpon>202010260103040_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011011014527_init.resx">
+      <DependentUpon>202011011014527_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

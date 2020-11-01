@@ -10,7 +10,8 @@ namespace QuanLyKaraoke
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Content/js/jquery.datetimepicker.full.js"
+                        "~/Content/js/jquery.datetimepicker.full.js",
+                        "~/Content/extend.js"
                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -28,6 +29,7 @@ namespace QuanLyKaraoke
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/extend.css",
                       "~/Content/js/jquery.datetimepicker.min.css"));
         }
     }

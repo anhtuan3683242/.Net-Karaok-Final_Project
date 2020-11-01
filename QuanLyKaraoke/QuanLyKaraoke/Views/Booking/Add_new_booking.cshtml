@@ -30,7 +30,7 @@
 
                     <td><p>Date time booking</p> </td>
                     <td>
-                        <input id="datetime" class="datetime">
+                        <input id="currdate" class="currdate">
                     </td>
                 </tr>
                 <tr>
@@ -53,28 +53,7 @@
 
     @section scripts {
         <script>
-            var d = new Date();
-            var h = d.getHours();
-            var m = d.getMinutes();
-            var date = d.toDateString();
-            var res = date + " " + h + ":" + m;
-            document.getElementById("date_time").innerHTML = res;
-
-
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
-            var hh = today.getHours();
-            var mn = today.getMinutes();
-            today = yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + mn;
-
-            document.getElementById("datetime").value = today;
-
-            $('.datetime').datetimepicker({
-                step: 30,
-                value: today
-            });
+//Script duoc chuyen het vao file ~Conten/extend.js
         </script>
     }
 

@@ -4,89 +4,69 @@
 
 }
 
+<style>
 
-    <h1>Manage Booking Orders</h1>
+</style>
+<h1>Manage Booking Orders</h1>
 
 
-    <table id="tab" class="table table-hover">
-        <thead>
+
+@*For filtering*@
+<section>
+    <input type="text" id="myInput" placeholder="Search anything...">
+    @*From*@
+    <input id="currdate" class="currdate">
+    @*To*@
+    <input id="nextdate" class="nextdate">
+
+</section>
+
+<table id="tab" class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Room ID</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">Booking Status</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var booking in Model)
+        {
             <tr>
-                <th scope="col">Room ID</th>
-                <th scope="col">Start Time</th>
-                <th scope="col">Booking Status</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col"></th>
+                <td scope="row" >@booking.Room.RoomID.ToString()</td>
+                <td>@booking.DateTime</td>
+                @if (booking.P_Status == 1)
+                {
+                    <td style="color:yellowgreen">wait for payment</td>
+                }
+                @if (booking.P_Status == 2)
+                {
+                    <td style="color:green">payment success</td>
+                }
+
+                @if (booking.P_Status == 3)
+                {
+                    <td style="color:red">was cancel</td>
+                }
+                <td>@booking.Name_Cus</td>
+                <td>@booking.Phone_Cus</td>
+                <td>
+                    <button>Check in</button>
+                    <button>Edit</button>
+                    <button>Order</button>
+                    <a href="#" class="btn btn-danger btnDel" data="@booking.PayID">Cancel</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var booking in Model)
-            {
-                <tr>
-                    <th scope="row">@booking.Room.RoomID.ToString()</th>
-                    <td>@booking.DateTime</td>
-                    @if (booking.P_Status == 1)
-                    {
-                        <td style="color:yellowgreen">wait for payment</td>
-                    }
-                    @if (booking.P_Status == 2)
-                    {
-                        <td style="color:green">payment success</td>
-                    }
-
-                    @if (booking.P_Status == 3)
-                    {
-                        <td style="color:red">was cancel</td>
-                    }
-                    <td>@booking.Name_Cus</td>
-                    <td>@booking.Phone_Cus</td>
-                    <td>
-                        <button>Check in</button>
-                        <button>Edit</button>
-                        <button>Order</button>
-                        <a href="#" class="btn btn-danger btnDel" data="@booking.PayID">Cancel</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <button>Add New</button>
-    <script>
-        var d = new Date();
-        var h = d.getHours();
-        var m = d.getMinutes();
-        var date = d.toDateString();
-        var res = date + " " + h + ":" + m;
-        document.getElementById("date_time").innerHTML = res;
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('.btnDel').click(function (e) {
-                //bỏ tác dụng bấm mặc định
-                e.preventDefault();
-                var atag = $(this);
-                var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
-                if (!confirm("Bạn có chắc chắn xóa" + idBooking))
-                    return;
-                $.ajax(
-                    {
-                        url: '/Home/Delete/' + idBooking + '/',
-                        method: "post",
-                        success: function (data) {
-                            if (data.isvalid) {
-                                atag.closest('tr').remove();//Lấy thẻ tr gần với thẻ a nhất và xóa
-                                return;
-                            }
-                            alert(data.msg);
-                        },
-                        failed: function () {
-
-                        }
-                    }
-                );
-            });
-        });
-    </script>
+        }
+    </tbody>
+</table>
+<button>Add New</button>
+<script>
+//Script duoc chuyen het vao file ~Conten/extend.js
+</script>
 
 
 
