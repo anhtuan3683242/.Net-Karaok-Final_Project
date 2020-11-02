@@ -24,7 +24,7 @@
                 "dbo.Bookings",
                 c => new
                     {
-                        PayID = c.String(nullable: false, maxLength: 128),
+                        PayID = c.Int(nullable: false, identity: true),
                         Name_Cus = c.String(),
                         Phone_Cus = c.Int(nullable: false),
                         Amount_Cus = c.Int(nullable: false),
@@ -32,20 +32,21 @@
                         DateTime = c.DateTime(nullable: false),
                         Duration = c.Int(nullable: false),
                         Total = c.Int(nullable: false),
-                        Order_ID = c.String(maxLength: 128),
+                        Order_ID = c.String(),
                         RoomID = c.String(maxLength: 128),
+                        Order_Order_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.PayID)
-                .ForeignKey("dbo.Orders", t => t.Order_ID)
+                .ForeignKey("dbo.Orders", t => t.Order_Order_ID)
                 .ForeignKey("dbo.Rooms", t => t.RoomID)
-                .Index(t => t.Order_ID)
-                .Index(t => t.RoomID);
+                .Index(t => t.RoomID)
+                .Index(t => t.Order_Order_ID);
             
             CreateTable(
                 "dbo.Orders",
                 c => new
                     {
-                        Order_ID = c.String(nullable: false, maxLength: 128),
+                        Order_ID = c.Int(nullable: false, identity: true),
                         O_Quantity = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Order_ID);
@@ -54,22 +55,24 @@
                 "dbo.Order_Detail",
                 c => new
                     {
-                        OD_ID = c.String(nullable: false, maxLength: 128),
+                        OD_ID = c.Int(nullable: false, identity: true),
                         Quantity = c.Int(nullable: false),
-                        Order_ID = c.String(maxLength: 128),
-                        Food_ID = c.String(maxLength: 128),
+                        Order_ID = c.String(),
+                        Food_ID = c.String(),
+                        Menu_Food_ID = c.Int(),
+                        Order_Order_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.OD_ID)
-                .ForeignKey("dbo.Menus", t => t.Food_ID)
-                .ForeignKey("dbo.Orders", t => t.Order_ID)
-                .Index(t => t.Order_ID)
-                .Index(t => t.Food_ID);
+                .ForeignKey("dbo.Menus", t => t.Menu_Food_ID)
+                .ForeignKey("dbo.Orders", t => t.Order_Order_ID)
+                .Index(t => t.Menu_Food_ID)
+                .Index(t => t.Order_Order_ID);
             
             CreateTable(
                 "dbo.Menus",
                 c => new
                     {
-                        Food_ID = c.String(nullable: false, maxLength: 128),
+                        Food_ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Price = c.Int(nullable: false),
                         Stock = c.Int(nullable: false),
@@ -92,13 +95,13 @@
         public override void Down()
         {
             DropForeignKey("dbo.Bookings", "RoomID", "dbo.Rooms");
-            DropForeignKey("dbo.Bookings", "Order_ID", "dbo.Orders");
-            DropForeignKey("dbo.Order_Detail", "Order_ID", "dbo.Orders");
-            DropForeignKey("dbo.Order_Detail", "Food_ID", "dbo.Menus");
-            DropIndex("dbo.Order_Detail", new[] { "Food_ID" });
-            DropIndex("dbo.Order_Detail", new[] { "Order_ID" });
+            DropForeignKey("dbo.Bookings", "Order_Order_ID", "dbo.Orders");
+            DropForeignKey("dbo.Order_Detail", "Order_Order_ID", "dbo.Orders");
+            DropForeignKey("dbo.Order_Detail", "Menu_Food_ID", "dbo.Menus");
+            DropIndex("dbo.Order_Detail", new[] { "Order_Order_ID" });
+            DropIndex("dbo.Order_Detail", new[] { "Menu_Food_ID" });
+            DropIndex("dbo.Bookings", new[] { "Order_Order_ID" });
             DropIndex("dbo.Bookings", new[] { "RoomID" });
-            DropIndex("dbo.Bookings", new[] { "Order_ID" });
             DropTable("dbo.Rooms");
             DropTable("dbo.Menus");
             DropTable("dbo.Order_Detail");

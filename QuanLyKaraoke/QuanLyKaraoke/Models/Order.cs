@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,8 @@ namespace QuanLyKaraoke.Models
     public class Order
     {
         [Key]
-        public string Order_ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Order_ID { get; set; }
         public int O_Quantity { get; set; }
         //cac lien ket
         

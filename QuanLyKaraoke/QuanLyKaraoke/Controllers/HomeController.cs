@@ -15,13 +15,6 @@ namespace QuanLyKaraoke.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
         [HttpGet]
         public ActionResult Login()
         {
@@ -32,14 +25,6 @@ namespace QuanLyKaraoke.Controllers
         {
             return View();
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         public ActionResult Admin_index()
         {
             
@@ -47,17 +32,42 @@ namespace QuanLyKaraoke.Controllers
         }
 
         [HttpPost]
-        public JsonResult Delete(string id)
+        public JsonResult Delete(int id)
         {
-            var book = db.Bookings.FirstOrDefault(l => l.PayID == id);
+            var book = db.Bookings.FirstOrDefault(b => b.PayID == id);
+            var room = db.Rooms.FirstOrDefault(r => r.RoomID == book.RoomID);
 
             if (book == null)
             {
-                return Json(new { isvalid = false, msg = "không tìm thấy thông tin máy" });
+                return Json(new { isvalid = false, msg = "Không tìm thấy đơn đặt phòng này" });
             }
+            room.Status = 1;
             db.Bookings.Remove(book);
             db.SaveChanges();
             return Json(new { isvalid = true, msg = "Đã xóa thành công" });
+        }
+
+        [HttpGet]
+        public ActionResult Add_new_booking()
+        {
+            var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+            ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
+            return View(new Booking());
+        }
+
+        [HttpPost]
+        public ActionResult Add_new_booking(Booking model)
+        {
+            model.Total = 0;
+            model.P_Status = 1;
+            model.Duration = 0;
+
+            var room = db.Rooms.Where(r => r.RoomID == model.RoomID).FirstOrDefault();
+            room.Status = 2;
+
+            db.Bookings.Add(model);
+            db.SaveChanges();
+            return RedirectToAction("Admin_index");
         }
     }
 }

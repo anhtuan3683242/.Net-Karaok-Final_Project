@@ -4,7 +4,6 @@ body{
     font-family: "Roboto", sans-serif;
 }
 .header{
-     position: 0px;
      background: black;
      padding-top: 6px;
      width: 100%;
@@ -117,7 +116,7 @@ label #sidebar_btn:hover{
 #check:checked ~.sidebar a{
     display: none;
 }
-#tab,h1{
+#tab,#title{
     width: 81%;
     margin-left: 250px;
     transition: 0.5s;
@@ -149,7 +148,7 @@ p {
     margin-left: 0px;
     width: 100%;
 }
-#check:checked ~ h1{
+#check:checked ~ #title{
     margin-left: 0px;
 }
 

@@ -10,7 +10,8 @@ namespace QuanLyKaraoke.Models
     public class Booking
     {
         [Key]
-        public string PayID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PayID { get; set; }
         public string Name_Cus { get; set; }
         public int Phone_Cus { get; set; }
         public int Amount_Cus { get; set; }

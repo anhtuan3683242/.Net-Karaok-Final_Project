@@ -42,7 +42,7 @@ $(document).ready(function () {
         e.preventDefault();
         var atag = $(this);
         var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
-        if (!confirm("Cancel booking on thí room?" + idBooking))
+        if (!confirm("Do you want to cancel this Booking Order ?"))
             return;
         $.ajax(
             {
