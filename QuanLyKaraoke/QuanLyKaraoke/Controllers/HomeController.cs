@@ -47,6 +47,26 @@ namespace QuanLyKaraoke.Controllers
             return Json(new { isvalid = true, msg = "Đã xóa thành công" });
         }
 
+        [HttpPost]
+        public JsonResult CheckIn(int id)
+        {
+            var book = db.Bookings.FirstOrDefault(b => b.PayID == id);
+            var room = db.Rooms.FirstOrDefault(r => r.RoomID == book.RoomID);
+
+            if (book == null)
+            {
+                return Json(new { isvalid = false, msg = "Không tìm thấy phòng này" });
+            }
+
+            if (room.Status == 3)
+            {
+                return Json(new { isvalid = false, msg = "Bạn đã nhận phòng rồi" });
+            }
+            room.Status = 3;
+            db.SaveChanges();
+            return Json(new { isvalid = true, msg = "Đã nhận phòng thành công" });
+        }
+
         [HttpGet]
         public ActionResult Add_new_booking()
         {

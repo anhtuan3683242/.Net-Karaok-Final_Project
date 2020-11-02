@@ -15,7 +15,7 @@
 
 </section>
 
-<table id="tab" class="table table-hover">
+<table class="table table-hover">
     <thead>
         <tr>
             <th scope="col">Room ID</th>
@@ -48,10 +48,10 @@
                 <td>@booking.Name_Cus</td>
                 <td>@booking.Phone_Cus</td>
                 <td>
-                    <button>Check in</button>
-                    <button>Edit</button>
-                    <button>Order</button>
-                    <a href="#" class="btn btn-danger btnDel" data="@booking.PayID">Cancel</a>
+                    <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@booking.PayID"> Check IN</a> |
+                    <button>Edit</button> |
+                    <button>Order</button> |
+                    <a href="#" class="btn btn-outline-danger btnDel" data="@booking.PayID">Cancel</a>
                 </td>
             </tr>
         }
@@ -60,6 +60,32 @@
 <a href="/Home/Add_new_booking" class="btn btn-info">Add new</a>
 <script>
 //Script duoc chuyen het vao file ~Conten/extend.js
+    $(document).ready(function () {
+        $('.checkout').click(function (e) {
+            //bỏ tác dụng bấm mặc định
+            e.preventDefault();
+            var atag = $(this);
+            var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
+            if (!confirm("Do you want to check in ?"))
+                return;
+            $.ajax(
+                {
+                    url: '/Home/CheckIn/' + idBooking + '/',
+                    method: "post",
+                    success: function (data) {
+                        if (data.isvalid) {
+                            alert(data.msg)
+                            return;
+                        }
+                        alert(data.msg);
+                    },
+                    failed: function () {
+
+                    }
+                }
+            );
+        });
+    });
 </script>
 
 

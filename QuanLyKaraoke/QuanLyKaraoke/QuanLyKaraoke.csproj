@@ -157,6 +157,7 @@
     <Compile Include="Models\QuanLyContext.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomDAO.cs" />
+    <Compile Include="Models\Viewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

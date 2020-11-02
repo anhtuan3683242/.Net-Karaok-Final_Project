@@ -35,7 +35,7 @@ $('.nextdate').datetimepicker({
 });
 
 
-//Delete function
+//Delete booking function
 $(document).ready(function () {
     $('.btnDel').click(function (e) {
         //bỏ tác dụng bấm mặc định
@@ -62,6 +62,9 @@ $(document).ready(function () {
         );
     });
 });
+
+//delete room
+
 
 //Search function
 $(document).ready(function () {
