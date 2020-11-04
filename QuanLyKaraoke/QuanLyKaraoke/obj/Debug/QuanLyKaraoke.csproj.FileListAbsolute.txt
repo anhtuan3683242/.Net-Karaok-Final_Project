@@ -164,12 +164,9 @@ D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CoreC
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CopyComplete
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
 D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
-D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
-D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.add_Price_room.resources
-D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.add_Price_room.resources
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\bin\Syncfusion.EJ2.dll
 C:\Users\Admin\Desktop\CuoiKy\QuanLyKaraoke\QuanLyKaraoke\bin\Syncfusion.Licensing.dll
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\QuanLyKaraoke.dll.config
@@ -346,3 +343,9 @@ E:\IT\Project CNPM\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
 E:\IT\Project CNPM\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.init.resources
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\AuthorizeNet.dll
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\Syncfusion.EJ2.dll
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\Syncfusion.Licensing.dll
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\bin\AuthorizeNet.xml
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
+D:\Finalproject\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
