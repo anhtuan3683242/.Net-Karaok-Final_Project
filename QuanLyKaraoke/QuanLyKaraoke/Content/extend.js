@@ -35,14 +35,14 @@ $('.nextdate').datetimepicker({
 });
 
 
-//Delete function
+//Delete booking function
 $(document).ready(function () {
     $('.btnDel').click(function (e) {
         //bỏ tác dụng bấm mặc định
         e.preventDefault();
         var atag = $(this);
         var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
-        if (!confirm("Cancel booking on thí room?" + idBooking))
+        if (!confirm("Do you want to cancel this Booking Order ?"))
             return;
         $.ajax(
             {
@@ -62,6 +62,9 @@ $(document).ready(function () {
         );
     });
 });
+
+//delete room
+
 
 //Search function
 $(document).ready(function () {
