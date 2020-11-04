@@ -41,7 +41,7 @@ namespace QuanLyKaraoke.Controllers
                     Session["Name"] = data.Name;
                     Session["UserName"] = data.UserName;
                     Session["S_ID"] = data.S_ID;
-                    return RedirectToAction("About");
+                    return RedirectToAction("Admin_index");
                 }
                 else
                 {

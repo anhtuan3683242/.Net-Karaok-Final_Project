@@ -3,11 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-<<<<<<< HEAD:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011031747511_Init.cs
-    public partial class Init : DbMigration
-=======
     public partial class initial : DbMigration
->>>>>>> Cuong_Branch:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011020850118_initial.cs
     {
         public override void Up()
         {
@@ -41,17 +37,10 @@
                         Order_Order_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.PayID)
-<<<<<<< HEAD:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011031747511_Init.cs
                 .ForeignKey("dbo.Order", t => t.Order_Order_ID)
-                .ForeignKey("dbo.Room", t => t.Room_RoomID)
-                .Index(t => t.Order_Order_ID)
-                .Index(t => t.Room_RoomID);
-=======
-                .ForeignKey("dbo.Orders", t => t.Order_Order_ID)
-                .ForeignKey("dbo.Rooms", t => t.RoomID)
+                .ForeignKey("dbo.Room", t => t.RoomID)
                 .Index(t => t.RoomID)
                 .Index(t => t.Order_Order_ID);
->>>>>>> Cuong_Branch:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011020850118_initial.cs
             
             CreateTable(
                 "dbo.Order",
@@ -105,29 +94,16 @@
         
         public override void Down()
         {
-<<<<<<< HEAD:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011031747511_Init.cs
-            DropForeignKey("dbo.Booking", "Room_RoomID", "dbo.Room");
+            DropForeignKey("dbo.Booking", "RoomID", "dbo.Room");
             DropForeignKey("dbo.Booking", "Order_Order_ID", "dbo.Order");
             DropForeignKey("dbo.Order_Detail", "Order_Order_ID", "dbo.Order");
             DropForeignKey("dbo.Order_Detail", "Menu_Food_ID", "dbo.Menu");
             DropIndex("dbo.Order_Detail", new[] { "Order_Order_ID" });
             DropIndex("dbo.Order_Detail", new[] { "Menu_Food_ID" });
-            DropIndex("dbo.Booking", new[] { "Room_RoomID" });
             DropIndex("dbo.Booking", new[] { "Order_Order_ID" });
+            DropIndex("dbo.Booking", new[] { "RoomID" });
             DropTable("dbo.Room");
             DropTable("dbo.Menu");
-=======
-            DropForeignKey("dbo.Bookings", "RoomID", "dbo.Rooms");
-            DropForeignKey("dbo.Bookings", "Order_Order_ID", "dbo.Orders");
-            DropForeignKey("dbo.Order_Detail", "Order_Order_ID", "dbo.Orders");
-            DropForeignKey("dbo.Order_Detail", "Menu_Food_ID", "dbo.Menus");
-            DropIndex("dbo.Order_Detail", new[] { "Order_Order_ID" });
-            DropIndex("dbo.Order_Detail", new[] { "Menu_Food_ID" });
-            DropIndex("dbo.Bookings", new[] { "Order_Order_ID" });
-            DropIndex("dbo.Bookings", new[] { "RoomID" });
-            DropTable("dbo.Rooms");
-            DropTable("dbo.Menus");
->>>>>>> Cuong_Branch:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011020850118_initial.cs
             DropTable("dbo.Order_Detail");
             DropTable("dbo.Order");
             DropTable("dbo.Booking");

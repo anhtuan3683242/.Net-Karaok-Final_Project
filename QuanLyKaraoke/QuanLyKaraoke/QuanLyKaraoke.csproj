@@ -147,9 +147,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011020850118_initial.cs" />
-    <Compile Include="Migrations\202011020850118_initial.designer.cs">
-      <DependentUpon>202011020850118_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202011041551136_initial.cs" />
+    <Compile Include="Migrations\202011041551136_initial.designer.cs">
+      <DependentUpon>202011041551136_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -323,8 +323,6 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Menu\Menu_Index.cshtml" />
     <Content Include="Views\Room\Room_Index.cshtml" />
-
-
     <Content Include="Views\Home\Login2.cshtml" />
     <Content Include="Views\Home\Add_new_booking.cshtml" />
   </ItemGroup>
@@ -345,8 +343,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011020850118_initial.resx">
-      <DependentUpon>202011020850118_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011041551136_initial.resx">
+      <DependentUpon>202011041551136_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
