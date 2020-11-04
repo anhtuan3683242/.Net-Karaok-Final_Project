@@ -27,6 +27,11 @@ $('.currdate').datetimepicker({
     value: today
 });
 
+//datebook
+$('.currdate2').datetimepicker({
+    step: 30,
+});
+
 //nextdate
 nextdate = yyyy + '-' + mm + '-' + nd + ' ' + hh + ':' + mn;
 $('.nextdate').datetimepicker({

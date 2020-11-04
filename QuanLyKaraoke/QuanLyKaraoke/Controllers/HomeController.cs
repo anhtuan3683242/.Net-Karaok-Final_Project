@@ -137,6 +137,8 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_booking()
         {
+            ViewBag.Loai = 0;
+
             var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
             ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
             return View(new Booking());
@@ -145,6 +147,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpPost]
         public ActionResult Add_new_booking(Booking model)
         {
+            ViewBag.Loai = 0;
             model.Total = 0;
             model.P_Status = 1;
             model.Duration = 0;
@@ -155,6 +158,46 @@ namespace QuanLyKaraoke.Controllers
             db.Bookings.Add(model);
             db.SaveChanges();
             return RedirectToAction("Admin_index");
+        }
+
+
+
+        //----------------------------
+        [HttpGet]
+        public ActionResult EditInfo(int id)
+        {
+            ViewBag.Loai = 1;
+
+            var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+            ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
+
+            var booking = db.Bookings.FirstOrDefault(b => b.PayID == id);
+            if (booking == null)
+            {
+                return RedirectToAction("Admin_index");
+            }
+            return View("Add_new_booking", booking);
+        }
+        [HttpPost]
+        public ActionResult EditInfo(Booking model)
+        {
+            ViewBag.Loai = 1;
+            if (ModelState.IsValid)
+            {
+                //lưu ý bắt lỗi ở đây
+                //lấy data cũ
+                
+                var book = db.Bookings.FirstOrDefault(b => b.PayID == model.PayID);
+                //gán các thông tin mới vào đối tượng lấy từ CSDL
+                book.Name_Cus = model.Name_Cus;
+                book.Phone_Cus = model.Phone_Cus;
+                book.Amount_Cus = model.Amount_Cus;
+                book.RoomID = model.RoomID;
+                book.DateTime = model.DateTime;
+                db.SaveChanges();
+                return RedirectToAction("Admin_index");
+            }
+            return View(model);
         }
     }
 }

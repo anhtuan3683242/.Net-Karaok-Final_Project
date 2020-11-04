@@ -49,9 +49,10 @@
                 <td>@booking.Phone_Cus</td>
                 <td>
                     <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@booking.PayID"> Check IN</a> |
-                    <button>Edit</button> |
-                    <button>Order</button> |
+                    @Html.ActionLink("Edit", "EditInfo", new { id = booking.PayID }, new { @class = "btn btn-outline-warning" }) |
+                    <a href="#" class="btn btn-outline-info btnOrder" data="@booking.PayID">Order</a> |
                     <a href="#" class="btn btn-outline-danger btnDel" data="@booking.PayID">Cancel</a>
+                    
                 </td>
             </tr>
         }
