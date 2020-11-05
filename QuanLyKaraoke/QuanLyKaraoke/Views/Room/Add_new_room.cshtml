@@ -1,0 +1,54 @@
+﻿@model QuanLyKaraoke.Models.Room
+@{
+    ViewBag.Title = "Add_new_room";
+}
+
+<h1>@ViewBag.Title</h1>
+@{
+    if (ViewBag.exc == 1)
+    {
+        <div name="error" class="alert alert-danger" role="alert">
+            ID Dupplicated!
+        </div>
+    }
+
+}
+<form id="form_post" action="#" method="post">
+    <table class="table" id="tab2">
+        <tbody>
+            <tr>
+                <td><p> RoomID</p></td>
+                <td>
+                    @Html.TextBoxFor(model => model.RoomID, new { @class = "form-control" })
+                </td>
+
+            </tr>
+            <tr>
+                <td><p> Room Type</p></td>
+                <td>
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.RoomType, "Standard", new { @name = "type" })
+                            <span style="font-size:18px;">Standard</span>
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.RoomType, "Vip", new { @name = "type" })
+                            <span style="font-size:18px;">Vip</span>
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.RoomType, "Luxury", new { @name = "type" })
+                            <span style="font-size:18px;">Luxury</span>
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save" class="btn_Save" style="width:188px"></td>
+                <td></td>
+
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+

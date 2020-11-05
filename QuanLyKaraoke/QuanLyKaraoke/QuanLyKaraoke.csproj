@@ -325,6 +325,7 @@
     <Content Include="Views\Room\Room_Index.cshtml" />
     <Content Include="Views\Home\Login2.cshtml" />
     <Content Include="Views\Home\Add_new_booking.cshtml" />
+    <Content Include="Views\Room\Add_new_room.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

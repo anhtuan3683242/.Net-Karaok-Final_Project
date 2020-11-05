@@ -12,13 +12,12 @@ namespace QuanLyKaraoke.Controllers
     {
         public QuanLyContext db = new QuanLyContext();
         // GET: Room
+
         public ActionResult Room_Index()
         {
-            Viewmodel viewmodel = new Viewmodel();
-            viewmodel.Rooms = new RoomDAO().getList();
 
-            return View(viewmodel);
-            //return View(new RoomDAO().getList());
+            return View(new RoomDAO().GetList());
+
         }
 
         [HttpPost]
@@ -36,38 +35,43 @@ namespace QuanLyKaraoke.Controllers
             return Json(new { isvalid = true, msg = "Đã xóa thành công" });
         }
 
-
         [HttpGet]
         public ActionResult Add_new_room()
         {
-
+            ViewBag.loai = 0;
             return View(new Room());
         }
+
         [HttpPost]
         public ActionResult Add_new_room(Room model)
         {
+            ViewBag.loai = 0;
+            var room = db.Rooms.FirstOrDefault(r => r.RoomID == model.RoomID);
 
-            var room = db.Rooms.Where(r => r.RoomID == model.RoomID).FirstOrDefault();
-            //if (room != null)
-            //{
-            //    return View(model);
-            //}
-            if (room.RoomType == "Std")
+            if (room != null)
             {
-                room.R_Price = 100000;
+                ViewBag.exc = 1;
+                return View(model);
             }
-            if (room.RoomType == "Vip")
+
+            ViewBag.exc = 0;
+            if (model.RoomType == "Standard")
             {
-                room.R_Price = 150000;
+                model.R_Price = 100000;
             }
-            if (room.RoomType == "Luxury")
+            if (model.RoomType == "Vip")
             {
-                room.R_Price = 200000;
+                model.R_Price = 150000;
             }
-            room.Status = 1;
+            if (model.RoomType == "Luxury")
+            {
+                model.R_Price = 200000;
+            }
+            model.Status = 1;
             db.Rooms.Add(model);
             db.SaveChanges();
             return RedirectToAction("Room_Index");
         }
+
     }
 }

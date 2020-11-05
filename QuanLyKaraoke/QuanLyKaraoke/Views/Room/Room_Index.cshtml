@@ -1,6 +1,6 @@
-﻿@*@model IEnumerable<QuanLyKaraoke.Models.Room>*@
+﻿@model IEnumerable<QuanLyKaraoke.Models.Room>
 
-@model QuanLyKaraoke.Models.Viewmodel
+@*@model QuanLyKaraoke.Models.Viewmodel*@
 @{
     ViewBag.Title = "Room_Management_page";
 }
@@ -25,35 +25,37 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var Rooms in Model.Rooms)
+        @foreach( var Rooms in Model )
         {
-            <tr>
-                <th scope="row">@Rooms.RoomID</th>
-                <td>@Rooms.RoomType</td>
+        <tr>
+            <th scope="row">@Rooms.RoomID</th>
+            <td>@Rooms.RoomType</td>
 
-                @if (Rooms.Status == 1)
-                {
-                    <td style="color:green"> Availabe</td>
-                }
-                @if (Rooms.Status == 2)
-                {
-                    <td style="color:greenyellow"> Booking</td>
-                }
-                @if (Rooms.Status == 3)
-                {
-                    <td style="color:red"> Using</td>
-                }
-                <td>@Rooms.R_Price VNĐ</td>
-                <td>
-                    <button>Edit</button>
-                    <a href="#" id="btnDelr" class="btn btn-danger btnDelr" data="@Rooms.RoomID">Delete</a>
-                </td>
-            </tr>
+            @if (Rooms.Status == 1)
+            {
+                <td style="color:green"> Availabe</td>
+            }
+
+            @if (Rooms.Status == 2)
+            {
+                <td style="color:greenyellow"> Booking</td>
+            }
+
+            @if (Rooms.Status == 3)
+            {
+                <td style="color:red"> Using</td>
+            }
+            <td>@Rooms.R_Price VNĐ</td>
+            <td>
+                <a href="#" id="btnDelr" class="btn btn-outline-danger btnDelr" data="@Rooms.RoomID">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+<a href="/Room/Add_new_room" class="btn btn-info">Add new</a>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -90,7 +92,7 @@
 
             </div>
         </div>
-    </div>
+    </div>*@
 
     <script>
         $(document).ready(function () {
