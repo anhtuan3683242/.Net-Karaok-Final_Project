@@ -12,7 +12,7 @@ namespace QuanLyKaraoke.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Order_ID { get; set; }
-        public int O_Quantity { get; set; }
+        public int O_total { get; set; }
         //cac lien ket
         
         public virtual ICollection<Order_Detail> Order_Details { get; set; }

@@ -47,7 +47,7 @@
                 c => new
                     {
                         Order_ID = c.Int(nullable: false, identity: true),
-                        O_Quantity = c.Int(nullable: false),
+                        O_total = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Order_ID);
             

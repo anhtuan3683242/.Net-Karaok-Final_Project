@@ -1,0 +1,55 @@
+﻿@model QuanLyKaraoke.Models.Menu
+@{
+    ViewBag.Title = "Add_new_menu";
+}
+<h1>@ViewBag.Title</h1>
+@{
+    if (ViewBag.exc == 1)
+    {
+        <div name="error" class="alert alert-danger" role="alert">
+            Already have this food in you stocks
+        </div>
+    }
+
+}
+<form id="form_post" action="#" method="post">
+    <table class="table" id="tab2">
+        <tbody>
+            <tr>
+                <td><p> Food Name</p></td>
+                <td>
+                    @if(ViewBag.loai == 0){
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" });
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(model => model.Name);
+                        @Model.Name;
+                    }
+
+                </td>
+
+            </tr>
+            <tr>
+                <td><p> Food Price</p></td>
+                <td>
+                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                </td>
+
+            </tr>
+            <tr>
+                <td><p> Stocks</p></td>
+                <td>
+                    @Html.TextBoxFor(model => model.Stock, new { @class = "form-control" })
+                </td>
+
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save" class="btn btn-info" style="width:188px"></td>
+                <td></td>
+
+            </tr>
+        </tbody>
+    </table>
+</form>
+

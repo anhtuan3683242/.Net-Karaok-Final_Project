@@ -32,15 +32,15 @@
                         <td style="color:green">@Foods.Stock</td>
                     }
                     
-                    <td>
-                        <button>Edit</button>
-                        <a href="#" class="btn btn-danger btnDel" data="@Foods.Food_ID">Delete</a>
-                    </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditInfo", new { id = Foods.Food_ID }, new { @class = "btn btn-outline-warning" }) |
+                    <a href="#" class="btn btn-outline-danger btnDelm" data="@Foods.Food_ID">Delete</a>
+                </td>
                 </tr>
             }
         </tbody>
     </table>
-    <button>Add New</button>
+    <a href="/Menu/Add_new_menu" class="btn btn-info">Add new</a>
     <script>
         var d = new Date();
         var h = d.getHours();
@@ -52,12 +52,12 @@
     @section scripts{
         <script>
             $(document).ready(function () {
-                $('.btnDel').click(function (e) {
+                $('.btnDelm').click(function (e) {
                     //bỏ tác dụng bấm mặc định
                     e.preventDefault();
                     var atag = $(this);
                     var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
-                    if (!confirm("Bạn có chắc chắn xóa" + idBooking))
+                    if (!confirm("Bạn có chắc chắn xóa món ăn này chứ ?"))
                         return;
                     $.ajax(
                         {
