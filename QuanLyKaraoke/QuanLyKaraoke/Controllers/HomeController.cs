@@ -155,6 +155,11 @@ namespace QuanLyKaraoke.Controllers
             var room = db.Rooms.Where(r => r.RoomID == model.RoomID).FirstOrDefault();
             room.Status = 2;
 
+            Order order = new Order();
+            order.O_total = 0;
+            var entity = db.Orders.Add(order);
+            model.Order_ID = entity.Order_ID;
+
             db.Bookings.Add(model);
             db.SaveChanges();
             return RedirectToAction("Admin_index");

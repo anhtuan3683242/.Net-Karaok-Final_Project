@@ -32,15 +32,14 @@
                         DateTime = c.DateTime(nullable: false),
                         Duration = c.Int(nullable: false),
                         Total = c.Int(nullable: false),
-                        Order_ID = c.String(),
+                        Order_ID = c.Int(nullable: false),
                         RoomID = c.String(maxLength: 128),
-                        Order_Order_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.PayID)
-                .ForeignKey("dbo.Order", t => t.Order_Order_ID)
+                .ForeignKey("dbo.Order", t => t.Order_ID, cascadeDelete: true)
                 .ForeignKey("dbo.Room", t => t.RoomID)
-                .Index(t => t.RoomID)
-                .Index(t => t.Order_Order_ID);
+                .Index(t => t.Order_ID)
+                .Index(t => t.RoomID);
             
             CreateTable(
                 "dbo.Order",
@@ -95,13 +94,13 @@
         public override void Down()
         {
             DropForeignKey("dbo.Booking", "RoomID", "dbo.Room");
-            DropForeignKey("dbo.Booking", "Order_Order_ID", "dbo.Order");
+            DropForeignKey("dbo.Booking", "Order_ID", "dbo.Order");
             DropForeignKey("dbo.Order_Detail", "Order_Order_ID", "dbo.Order");
             DropForeignKey("dbo.Order_Detail", "Menu_Food_ID", "dbo.Menu");
             DropIndex("dbo.Order_Detail", new[] { "Order_Order_ID" });
             DropIndex("dbo.Order_Detail", new[] { "Menu_Food_ID" });
-            DropIndex("dbo.Booking", new[] { "Order_Order_ID" });
             DropIndex("dbo.Booking", new[] { "RoomID" });
+            DropIndex("dbo.Booking", new[] { "Order_ID" });
             DropTable("dbo.Room");
             DropTable("dbo.Menu");
             DropTable("dbo.Order_Detail");

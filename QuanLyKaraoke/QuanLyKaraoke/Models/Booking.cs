@@ -20,7 +20,7 @@ namespace QuanLyKaraoke.Models
         public int Duration { get; set; }
         public int Total { get; set; }
         //Cac lien ket
-        public string Order_ID { get; set; }
+        public int Order_ID { get; set; }
         public virtual Order Order { get; set; }
 
         public string RoomID { get; set; }
