@@ -1,7 +1,16 @@
 ﻿@model QuanLyKaraoke.Models.Menu
 @{
-    ViewBag.Title = "Add_new_menu";
+    if (ViewBag.loai == 0)
+    {
+        ViewBag.Title = "Add new menu";
+    }
+    else
+    {
+        ViewBag.Title = "Edit memu";
+    }
+
 }
+
 <h1>@ViewBag.Title</h1>
 @{
     if (ViewBag.exc == 1)
@@ -18,7 +27,8 @@
             <tr>
                 <td><p> Food Name</p></td>
                 <td>
-                    @if(ViewBag.loai == 0){
+                    @if (ViewBag.loai == 0)
+                    {
                         @Html.TextBoxFor(model => model.Name, new { @class = "form-control" });
                     }
                     else

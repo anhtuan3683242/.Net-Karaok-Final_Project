@@ -11,7 +11,7 @@ namespace QuanLyKaraoke.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string S_ID { get; set; }
+        public int S_ID { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }

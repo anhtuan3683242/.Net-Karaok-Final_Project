@@ -1,0 +1,68 @@
+﻿@model IEnumerable<QuanLyKaraoke.Models.Account>
+@{
+    ViewBag.Title = "Account_index";
+}
+
+<h1>Account index</h1>
+<table id="tab" class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Staff ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Role</th>
+            <th scope="col">UserName</th>
+            <th scope="col">PassWord</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Account in Model)
+        {
+            <tr>
+                <th scope="row">@Account.S_ID</th>
+                <td>@Account.Name</td>
+                <td>@Account.Phone</td>
+                <td>@Account.Role</td>
+                <td>@Account.UserName</td>
+                <td>@Account.PassWord</td>
+
+                <td>
+                    @Html.ActionLink("Edit", "EditInfo", new { id = Account.S_ID }, new { @class = "btn btn-outline-warning" }) |
+                    <a href="#" class="btn btn-outline-danger btnDela" data="@Account.S_ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Account/Add_new_account" class="btn btn-info">Add new</a>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.btnDela').click(function (e) {
+                //bỏ tác dụng bấm mặc định
+                e.preventDefault();
+                var atag = $(this);
+                var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
+                if (!confirm("Bạn có chắc chắn xóa tài khoản này chứ ?"))
+                    return;
+                $.ajax(
+                    {
+                        url: '/Account/Delete/' + idBooking + '/',
+                        method: "post",
+                        success: function (data) {
+                            if (data.isvalid) {
+                                atag.closest('tr').remove();//Lấy thẻ tr gần với thẻ a nhất và xóa
+                                return;
+                            }
+                            alert(data.msg);
+                        },
+                        failed: function () {
+
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+}

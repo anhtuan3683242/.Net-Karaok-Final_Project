@@ -1,0 +1,78 @@
+﻿@model QuanLyKaraoke.Models.Account
+@{
+    if (ViewBag.loai == 0)
+    {
+        ViewBag.Title = "Add new account";
+    }
+    else
+    {
+        ViewBag.Title = "Edit account";
+    }
+
+}
+
+<h1>@ViewBag.Title</h1>
+@{
+    if (ViewBag.exc == 1)
+    {
+        <div name="error" class="alert alert-danger" role="alert">
+            ID Dupplicated!
+        </div>
+    }
+
+}
+<form id="form_post" action="#" method="post">
+    <table class="table" id="tab2">
+        <tbody>
+            <tr>
+                <td><p>Staff Name</p></td>
+                <td>
+                    @if (ViewBag.loai == 0)
+                    {
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" });
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" });
+                        @Html.HiddenFor(model => model.S_ID);
+                    }
+
+                </td>
+
+            </tr>
+            <tr>
+                <td><p> Phone</p></td>
+                <td>
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                </td>
+
+            </tr>
+            <tr>
+                <td><p> Role</p></td>
+                <td>
+                    @Html.TextBoxFor(model => model.Role, new { @class = "form-control" })
+                </td>
+
+            </tr>
+            <tr>
+                <td><p> UserName</p></td>
+                <td>
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                </td>
+
+            </tr>
+            <tr>
+                <td><p> PassWord</p></td>
+                <td>
+                    @Html.TextBoxFor(model => model.PassWord, new { @class = "form-control" })
+                </td>
+
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save" class="btn btn-info" style="width:188px"></td>
+                <td></td>
+
+            </tr>
+        </tbody>
+    </table>
+</form>
