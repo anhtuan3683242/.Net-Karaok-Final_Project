@@ -26,6 +26,12 @@ namespace QuanLyKaraoke.Controllers
         {
             return View();
         }
+
+        public ActionResult Order()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(string UserName, string PassWord)
