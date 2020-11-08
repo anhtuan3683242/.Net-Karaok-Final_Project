@@ -232,6 +232,8 @@ namespace QuanLyKaraoke.Controllers
             var Food = db.Order_Details
                          .Where(f => f.Order_ID == model.Order_Detail.Order_ID && f.Food_ID == model.Order_Detail.Food_ID)
                          .FirstOrDefault();
+            var Stock = db.Menus.Where(s => s.Food_ID == model.Order_Detail.Food_ID).FirstOrDefault();
+            Stock.Stock -= model.Order_Detail.Quantity;
             // nếu đã có món ăn này rồi
             if (Food != null)
             {
