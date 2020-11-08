@@ -88,7 +88,7 @@ namespace QuanLyKaraoke.Controllers
             
             return View(new BookingDAO().GetList());
         }
-
+        //----------Delete
         [HttpPost]
         public JsonResult Delete(int id)
         {
@@ -119,7 +119,7 @@ namespace QuanLyKaraoke.Controllers
             return byte2String;
         }
 
-
+        //-----------CheckIn
         [HttpPost]
         public JsonResult CheckIn(int id)
         {
@@ -139,7 +139,7 @@ namespace QuanLyKaraoke.Controllers
             db.SaveChanges();
             return Json(new { isvalid = true, msg = "Đã nhận phòng thành công" });
         }
-
+        //------------Add
         [HttpGet]
         public ActionResult Add_new_booking()
         {
@@ -173,7 +173,7 @@ namespace QuanLyKaraoke.Controllers
 
 
 
-        //----------------------------
+        //-------------Edit
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
@@ -209,6 +209,48 @@ namespace QuanLyKaraoke.Controllers
                 return RedirectToAction("Admin_index");
             }
             return View(model);
+        }
+
+        //---------Order
+        [HttpGet]
+        public ActionResult Order(int id)
+        {
+            var Menu = db.Menus.ToList();
+            ViewBag.MenuList = new SelectList(Menu, "Food_ID", "Name");
+            ViewBag.OrderID = id;
+
+            Viewmodel viewmodel = new Viewmodel();
+            viewmodel.Order_Details = new Order_DetailDAO().GetListOrder(id);
+            viewmodel.Order_Detail = new Order_Detail();
+
+            return View("Order", viewmodel);
+        }
+
+        [HttpPost]
+        public ActionResult Order(Viewmodel model)
+        {
+            var Food = db.Order_Details
+                         .Where(f => f.Order_ID == model.Order_Detail.Order_ID && f.Food_ID == model.Order_Detail.Food_ID)
+                         .FirstOrDefault();
+            // nếu đã có món ăn này rồi
+            if (Food != null)
+            {
+                Food.Quantity += model.Order_Detail.Quantity;
+                db.SaveChanges();
+                return RedirectToAction("Order");
+                
+            }
+            // nếu chưa có món ăn này
+            Order_Detail od = new Order_Detail();
+            od.Order_ID = model.Order_Detail.Order_ID;
+            od.Food_ID = model.Order_Detail.Food_ID;
+            od.Quantity = model.Order_Detail.Quantity;
+
+            db.Order_Details.Add(od);
+            db.SaveChanges();
+
+            return RedirectToAction("Order");
+            
         }
     }
 }

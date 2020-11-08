@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -13,7 +13,7 @@
                     {
                         S_ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
-                        Phone = c.Int(nullable: false),
+                        Phone = c.String(nullable: false),
                         UserName = c.String(nullable: false),
                         PassWord = c.String(nullable: false),
                         Role = c.String(),
@@ -26,7 +26,7 @@
                     {
                         PayID = c.Int(nullable: false, identity: true),
                         Name_Cus = c.String(),
-                        Phone_Cus = c.Int(nullable: false),
+                        Phone_Cus = c.String(),
                         Amount_Cus = c.Int(nullable: false),
                         P_Status = c.Int(nullable: false),
                         DateTime = c.DateTime(nullable: false),
@@ -56,16 +56,14 @@
                     {
                         OD_ID = c.Int(nullable: false, identity: true),
                         Quantity = c.Int(nullable: false),
-                        Order_ID = c.String(),
-                        Food_ID = c.String(),
-                        Menu_Food_ID = c.Int(),
-                        Order_Order_ID = c.Int(),
+                        Order_ID = c.Int(nullable: false),
+                        Food_ID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.OD_ID)
-                .ForeignKey("dbo.Menu", t => t.Menu_Food_ID)
-                .ForeignKey("dbo.Order", t => t.Order_Order_ID)
-                .Index(t => t.Menu_Food_ID)
-                .Index(t => t.Order_Order_ID);
+                .ForeignKey("dbo.Menu", t => t.Food_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Order", t => t.Order_ID, cascadeDelete: true)
+                .Index(t => t.Order_ID)
+                .Index(t => t.Food_ID);
             
             CreateTable(
                 "dbo.Menu",
@@ -95,10 +93,10 @@
         {
             DropForeignKey("dbo.Booking", "RoomID", "dbo.Room");
             DropForeignKey("dbo.Booking", "Order_ID", "dbo.Order");
-            DropForeignKey("dbo.Order_Detail", "Order_Order_ID", "dbo.Order");
-            DropForeignKey("dbo.Order_Detail", "Menu_Food_ID", "dbo.Menu");
-            DropIndex("dbo.Order_Detail", new[] { "Order_Order_ID" });
-            DropIndex("dbo.Order_Detail", new[] { "Menu_Food_ID" });
+            DropForeignKey("dbo.Order_Detail", "Order_ID", "dbo.Order");
+            DropForeignKey("dbo.Order_Detail", "Food_ID", "dbo.Menu");
+            DropIndex("dbo.Order_Detail", new[] { "Food_ID" });
+            DropIndex("dbo.Order_Detail", new[] { "Order_ID" });
             DropIndex("dbo.Booking", new[] { "RoomID" });
             DropIndex("dbo.Booking", new[] { "Order_ID" });
             DropTable("dbo.Room");

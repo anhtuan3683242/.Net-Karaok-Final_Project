@@ -30,7 +30,7 @@
         @foreach (var booking in Model)
         {
             <tr>
-                <td scope="row" >@booking.Room.RoomID.ToString()</td>
+                <th scope="row" >@booking.Room.RoomID.ToString()</th>
                 <td>@booking.DateTime</td>
                 @if (booking.P_Status == 1)
                 {
@@ -48,11 +48,19 @@
                 <td>@booking.Name_Cus</td>
                 <td>@booking.Phone_Cus</td>
                 <td>
-                    <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@booking.PayID"> Check IN</a> |
+                    @if (booking.Room.Status == 3)
+                    {
+                        <a href="#" id="" class="btn btn-outline-success checkout" data="@booking.PayID"> Check OUT  |</a>
+                    }
+                    else
+                    {
+                        <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@booking.PayID"> Check IN  |</a> 
+                     }
+
                     @Html.ActionLink("Edit", "EditInfo", new { id = booking.PayID }, new { @class = "btn btn-outline-warning" }) |
-                    <a href="/Home/Order" class="btn btn-outline-info btnOrder" data="@booking.PayID">Order</a> |
+                    <a href="/Home/Order/@booking.Order_ID" class="btn btn-outline-info btnOrder" data="@booking.Order_ID">Order</a> |
                     <a href="#" class="btn btn-outline-danger btnDel" data="@booking.PayID">Cancel</a>
-                    
+
                 </td>
             </tr>
         }
@@ -69,6 +77,7 @@
             var idBooking = $(this).attr('data');//lấy giá trị thuộc tính data(mã máy)
             if (!confirm("Do you want to check in ?"))
                 return;
+            
             $.ajax(
                 {
                     url: '/Home/CheckIn/' + idBooking + '/',
@@ -76,6 +85,7 @@
                     success: function (data) {
                         if (data.isvalid) {
                             alert(data.msg)
+                            window.location.reload()
                             return;
                         }
                         alert(data.msg);
@@ -85,6 +95,7 @@
                     }
                 }
             );
+            
         });
     });
 </script>

@@ -16,7 +16,7 @@ namespace QuanLyKaraoke.Models
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
         [Required]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         [Required]
         public string UserName { get; set; }
         [Required]

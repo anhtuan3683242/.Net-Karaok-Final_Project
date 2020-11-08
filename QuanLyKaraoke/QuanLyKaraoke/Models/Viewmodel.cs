@@ -7,8 +7,8 @@ namespace QuanLyKaraoke.Models
 {
     public class Viewmodel
     {
-        public IEnumerable<Room> Rooms { get; set; }
-        public Room Room { get; set; }
+        public IEnumerable<Order_Detail> Order_Details { get; set; }
+        public Order_Detail Order_Detail { get; set; }
     }
 
 }

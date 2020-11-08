@@ -1,47 +1,40 @@
-﻿@model QuanLyKaraoke.Models.Booking
+﻿@model QuanLyKaraoke.Models.Viewmodel
 @{
     ViewBag.Title = "Order";
+    var TotalAll = 0;
 }
 
 @*Reviewing Order List*@
 @*Get bảng order detail để lấy số lượng, liên kết tới bảng menu để lấy tên và mã món ăn*@
-<h1>@ViewBag.Title</h1>
+<hr />
 <section>
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col"><strong>P101</strong> </th>
-                <th scope="col"><strong>Name</strong></th>
-                <th scope="col"><strong>Quantity</strong></th>
-                <th scope="col"><strong>Price</strong></th>
+                <th scope="col"><strong>Food Name</strong></th>
+                <th scope="col" style="text-align: center;"><strong>Quantity</strong></th>
+                <th scope="col" style="text-align: right;"><strong>Price</strong></th>
+                <th scope="col" style="text-align: right;"><strong>Total</strong> </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Heniken</td>
-                <td>10</td>
-                <td>20$</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Water</td>
-                <td>10</td>
-                <td>10$</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Tiger</td>
-                <td>10</td>
-                <td>50$</td>
-            </tr>
+            @foreach (var food in Model.Order_Details)
+            {
+                <tr>
+                    <th scope="row">@food.Menu.Name</th>
+                    <td style="text-align: center;">@food.Quantity</td>
+                    <td style="text-align: right;">@food.Menu.Price</td>
+                    <td style="text-align: right;">@(food.Menu.Price*food.Quantity) VNĐ</td>
+                </tr>
+                TotalAll += (food.Menu.Price * food.Quantity);
+            }
         </tbody>
         <tfoot class="thead-light">
             <tr>
-                <th scope="col">Total</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col">80$</th>
+                <th scope="col">.</th>
+                <th scope="col" style="text-align: center;">.</th>
+                <th scope="col" style="text-align: right; ">Total All</th>
+                <th scope="col" style="text-align: right;">@TotalAll VNĐ</th>
             </tr>
         </tfoot>
     </table>
@@ -54,32 +47,41 @@
 
     <h3> Add to order list</h3>
 
-    <form class="form-inline">
+    <form class="form-inline" id="form_post" action="#" method="post">
         <div class="form-group mb-2">
             <div class="row-fluid">
-                <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+
+                @Html.DropDownListFor(model => model.Order_Detail.Food_ID, ViewBag.MenuList as SelectList, "------Select Food------", new { @class = "form-control" })
+                @Html.HiddenFor(model => model.Order_Detail.Order_ID, new { Value = @ViewBag.OrderID })
+                <!--<select class="selectpicker" data-show-subtext="true" data-live-search="true">-->
 
                     @*Load data menu to here*@
-                    <option data-subtext="2$">Heniken</option>
+                    <!--<option data-subtext="2$">Heniken</option>
                     <option data-subtext="1$">Water</option>
                     <option data-subtext="5$">Tiger</option>
                     <option data-subtext="10$">Fruit set 1</option>
-                    <option data-subtext="10$">Fruit set 2"</option>
+                    <option data-subtext="10$">Fruit set 2"</option>-->
                     @*IF it out of stock => disable*@
-                    <option data-subtext="1$" disabled="disabled">Snack</option>
-                </select>
+                    <!--<option data-subtext="1$" disabled="disabled">Snack</option>
+                </select>-->
 
             </div>
         </div>
 
         <div class="form-group mx-sm-3 mb-2">
             <div class="col-10">
-                <input class="form-control" type="number" value="1" id="example-number-input">
+                @Html.TextBoxFor(Model => Model.Order_Detail.Quantity, new { @class="form-control"})
+                @*<input class="form-control" type="number" value="1" id="example-number-input">*@
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Add</button>
+        <input type="submit" value="Add" class="btn btn-info" onclick = "reloadPage()" style="width:188px">
     </form>
 
 </section>
-
+<script type="text/javascript">
+  function reloadPage()
+  {
+    window.location.reload()
+  }
+</script>
 
