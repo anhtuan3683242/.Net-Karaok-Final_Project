@@ -9,6 +9,8 @@ namespace QuanLyKaraoke.Models
     {
         public IEnumerable<Order_Detail> Order_Details { get; set; }
         public Order_Detail Order_Detail { get; set; }
+
+        public Order Order { get; set; }
     }
 
 }

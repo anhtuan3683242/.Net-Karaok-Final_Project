@@ -94,12 +94,16 @@ namespace QuanLyKaraoke.Controllers
         {
             var book = db.Bookings.FirstOrDefault(b => b.PayID == id);
             var room = db.Rooms.FirstOrDefault(r => r.RoomID == book.RoomID);
+            var order = db.Orders.FirstOrDefault(o => o.Order_ID == book.Order_ID);
 
             if (book == null)
             {
                 return Json(new { isvalid = false, msg = "Không tìm thấy đơn đặt phòng này" });
             }
+            //Đặt lại status phòng
             room.Status = 1;
+            //Xóa đơn đặt và xóa giỏ hàng phòng đó
+            db.Orders.Remove(order);
             db.Bookings.Remove(book);
             db.SaveChanges();
             return Json(new { isvalid = true, msg = "Đã xóa thành công" });
@@ -215,13 +219,14 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Order(int id)
         {
-            var Menu = db.Menus.ToList();
+            var Menu = db.Menus.Where(m => m.Stock > 0).ToList();
             ViewBag.MenuList = new SelectList(Menu, "Food_ID", "Name");
             ViewBag.OrderID = id;
 
             Viewmodel viewmodel = new Viewmodel();
             viewmodel.Order_Details = new Order_DetailDAO().GetListOrder(id);
             viewmodel.Order_Detail = new Order_Detail();
+            viewmodel.Order = new OrderDAO().GetOrderByID(id);
 
             return View("Order", viewmodel);
         }
@@ -229,25 +234,40 @@ namespace QuanLyKaraoke.Controllers
         [HttpPost]
         public ActionResult Order(Viewmodel model)
         {
+            var Order = db.Orders.Where(o => o.Order_ID == model.Order_Detail.Order_ID).FirstOrDefault();
             var Food = db.Order_Details
                          .Where(f => f.Order_ID == model.Order_Detail.Order_ID && f.Food_ID == model.Order_Detail.Food_ID)
                          .FirstOrDefault();
             var Stock = db.Menus.Where(s => s.Food_ID == model.Order_Detail.Food_ID).FirstOrDefault();
+            if (Stock.Stock < model.Order_Detail.Quantity)
+            {
+                //ViewBag.err = "The amount of food you ordered is out of stock";
+                TempData["Message"] = "The amount of food you ordered is out of stock";
+                return RedirectToAction("Order");
+            }
+            
             Stock.Stock -= model.Order_Detail.Quantity;
-            // nếu đã có món ăn này rồi
+            // nếu đã có món ăn này trong giỏ hàng rồi
             if (Food != null)
             {
+                // update lại tổng tiền giỏ hàng
+                Order.O_total = model.Order.O_total + model.Order_Detail.Quantity * Stock.Price;
+                // update số lượng của món đó
                 Food.Quantity += model.Order_Detail.Quantity;
                 db.SaveChanges();
                 return RedirectToAction("Order");
                 
             }
-            // nếu chưa có món ăn này
+            // nếu chưa có món ăn này khởi tạo liên kết và số lượng món đó
             Order_Detail od = new Order_Detail();
             od.Order_ID = model.Order_Detail.Order_ID;
             od.Food_ID = model.Order_Detail.Food_ID;
             od.Quantity = model.Order_Detail.Quantity;
 
+            // update lại tổng tiền giỏ hàng
+            Order.O_total = model.Order.O_total + model.Order_Detail.Quantity * Stock.Price;
+
+            //save món mới
             db.Order_Details.Add(od);
             db.SaveChanges();
 
