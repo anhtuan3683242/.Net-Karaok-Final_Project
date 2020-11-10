@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Security.Cryptography;
 using System.Text;
+using Rotativa;
 
 namespace QuanLyKaraoke.Controllers
 {
@@ -273,6 +274,14 @@ namespace QuanLyKaraoke.Controllers
 
             return RedirectToAction("Order");
             
+        }
+        //convert pdf
+        public ActionResult ExportPDF()
+        {
+            return new ActionAsPdf("Index")
+            {
+                FileName = Server.MapPath("~/Content/PDF.pdf")
+            };
         }
     }
 }
