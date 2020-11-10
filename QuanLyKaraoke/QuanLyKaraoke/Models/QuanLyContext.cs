@@ -16,6 +16,7 @@ namespace QuanLyKaraoke.Models
 
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Order_Detail> Order_Details { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Account> Accounts { get; set; }

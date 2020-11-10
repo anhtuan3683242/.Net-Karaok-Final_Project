@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        @Html.DropDownListFor(model => model.RoomID, ViewBag.RoomList as SelectList, Model.Room.RoomID, new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.RoomID, ViewBag.RoomList as SelectList, Model.Room.RoomID, new { @class = "form-control"})
                         @Html.HiddenFor(model => model.PayID)
                     }
 

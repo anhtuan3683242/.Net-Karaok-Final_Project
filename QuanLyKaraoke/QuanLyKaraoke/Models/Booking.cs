@@ -13,7 +13,7 @@ namespace QuanLyKaraoke.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PayID { get; set; }
         public string Name_Cus { get; set; }
-        public int Phone_Cus { get; set; }
+        public string Phone_Cus { get; set; }
         public int Amount_Cus { get; set; }
         public int P_Status { get; set; }// 1: wait for payment; 2: payment success; 3: was cancel
         public DateTime DateTime { get; set; }

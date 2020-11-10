@@ -50,7 +50,20 @@
             <tr>
                 <td><p> Role</p></td>
                 <td>
-                    @Html.TextBoxFor(model => model.Role, new { @class = "form-control" })
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.Role, "Staff", new { @name = "role" })
+                            <span style="font-size:18px;">Staff</span>
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.Role, "Cashier", new { @name = "role" })
+                            <span style="font-size:18px;">Cashier</span>
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.Role, "Admin", new { @name = "role" })
+                            <span style="font-size:18px;">Admin</span>
+                        </label>
+                    </div>
                 </td>
 
             </tr>
