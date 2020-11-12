@@ -13,7 +13,14 @@ namespace QuanLyKaraoke.Controllers
         // GET: Account
         public ActionResult Account_index()
         {
-            return View( new AccountDAO().GetList());
+            if (Session["S_ID"] != null && Session["Role"].ToString() == "admin")
+            {
+                return View(new AccountDAO().GetList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
@@ -34,8 +41,15 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_account()
         {
-            ViewBag.Loai = 0;
-            return View(new Account());
+            if (Session["S_ID"] != null && Session["Role"].ToString() == "admin")
+            {
+                ViewBag.Loai = 0;
+                return View(new Account());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
@@ -61,14 +75,21 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
-            ViewBag.Loai = 1;
-
-            var Account = db.Accounts.FirstOrDefault(a => a.S_ID == id);
-            if (Account == null)
+            if (Session["S_ID"] != null && Session["Role"].ToString() == "admin")
             {
-                return RedirectToAction("Account_index");
+                ViewBag.Loai = 1;
+
+                var Account = db.Accounts.FirstOrDefault(a => a.S_ID == id);
+                if (Account == null)
+                {
+                    return RedirectToAction("Account_index");
+                }
+                return View("Add_new_account", Account);
             }
-            return View("Add_new_account", Account);
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
         [HttpPost]
         public ActionResult EditInfo(Account model)

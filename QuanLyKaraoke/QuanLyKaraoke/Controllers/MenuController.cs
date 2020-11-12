@@ -13,7 +13,15 @@ namespace QuanLyKaraoke.Controllers
         // GET: Menu
         public ActionResult Menu_Index()
         {
-            return View (new MenuDAO().getList());
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            {
+                return View(new MenuDAO().getList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            
         }
 
         [HttpPost]
@@ -34,8 +42,15 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_menu()
         {
-            ViewBag.Loai = 0;
-            return View(new Menu());
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            {
+                ViewBag.Loai = 0;
+                return View(new Menu());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
@@ -59,14 +74,22 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
-            ViewBag.Loai = 1;
-
-            var menu = db.Menus.FirstOrDefault(m => m.Food_ID == id);
-            if (menu == null)
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
             {
-                return RedirectToAction("Menu_index");
+                ViewBag.Loai = 1;
+
+                var menu = db.Menus.FirstOrDefault(m => m.Food_ID == id);
+                if (menu == null)
+                {
+                    return RedirectToAction("Menu_index");
+                }
+                return View("Add_new_menu", menu);
             }
-            return View("Add_new_menu", menu);
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
         }
         [HttpPost]
         public ActionResult EditInfo(Menu model)

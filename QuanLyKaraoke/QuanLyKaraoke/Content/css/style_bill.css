@@ -1,0 +1,200 @@
+
+
+body {
+    width:  45rem;
+    min-height: 20rem;
+    box-shadow: 4px 4px 4px black;  
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+
+header{
+    border-radius: 1rem 1rem 0 0;
+    width: 100%;
+    flex-basis: 12rem;
+    background-color: violet;
+    text-align: center;
+    position: relative;
+}
+
+.logo{
+    position: relative;
+    top: 50px;
+
+}
+
+.order{
+    padding: 1.2rem;
+    flex: 1;
+    background: white;
+    border-radius: 0 0 1rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+}
+
+button{
+    padding: 1rem 2rem;
+    border: none; 
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+}
+
+#btn-checkout{
+    width: 100%;
+    background: violet;
+    color: white;
+}
+
+.summary {
+    border-top: grey 1px ridge;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: #e4e2e2;
+    font-size: 1.3rem;
+    font-weight: bold;  
+}
+
+#money{
+    float: right;
+}
+
+.item{
+    display: flex;
+}
+
+.item .item-name{
+    flex-basis: 20rem;
+}
+
+.item .item-quantity{
+    flex-basis: 10rem;
+    padding-left: 5rem;
+}
+
+.item-price {
+    margin-left: auto;
+    padding-right: 1.5rem;
+}
+
+.neon-btn a{
+    position: relative !important;
+    display: inline-block !important;
+	margin: 10px 0 !important;
+	margin-left: 100px;
+    color:  rgb(173, 18, 140) !important;
+    font-size: 24px !important;
+    text-decoration: none !important;
+    transition:  0.5s !important;
+    letter-spacing: 1px !important;
+    overflow: hidden !important;
+	padding: 15px 290px !important;
+	text-align: center !important;
+}
+
+.neon-btn a:hover {
+    background-color:  rgb(173, 18, 140) !important;
+    color: white !important;
+    box-shadow: 0 0 5px  rgb(173, 18, 140),
+                0 0 25px  rgb(173, 18, 140),
+                0 0 50px  rgb(173, 18, 140),
+                0 0 200px  rgb(173, 18, 140);
+}
+
+.neon-btn a span{
+    position: absolute;
+    display: block;
+}
+
+
+.neon-btn a span:nth-child(1){
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgb(173, 18, 140));
+    animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+    0%{
+        left: -100%;
+    }
+    50%,100%{
+        left: 100%;
+    }
+}
+
+.neon-btn a span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, rgb(173, 18, 140));
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+
+@keyframes animate2 {
+    0%{
+        top: -100%;
+    }
+    50%,100%{
+        top: 100%;
+    }
+}
+
+.neon-btn a span:nth-child(3){
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, rgb(173, 18, 140));
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes animate3 {
+    0%{
+        right: -100%;
+    }
+    50%,100%{
+        right: 100%;
+    }
+}
+
+.neon-btn a span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, rgb(173, 18, 140));
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes animate4 {
+    0%{
+        bottom: -100%;
+    }
+    50%,100%{
+        bottom: 100%;
+    }
+}
+.s1{
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.phone{
+    margin-left: 1.5rem;
+}
+
+.time{
+    margin-left: 1.5rem;
+}

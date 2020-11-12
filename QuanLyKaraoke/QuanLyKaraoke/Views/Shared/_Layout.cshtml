@@ -55,8 +55,18 @@
     <div class="sidebar">
         <center>
             <img src="~/Content/images/img.jpg" class="profile_image" alt="">
-            <h4>CuongPVQ</h4>
-            <h5>Staff</h5>
+            @if (Session["S_ID"] != null)
+            {
+                <h4>@Session["Name"].ToString()</h4>
+                <h5>@Session["Role"].ToString()</h5>
+            }
+            else
+            {
+                <h4>
+                    You are not logged in
+                </h4>
+            }
+
         </center>
         <a href="/Home/"><i class="fa fa-home" aria-hidden="true"></i><span>Home Page</span></a>
         <a href="/Room/Room_Index"><i class="fa fa-book" aria-hidden="true"></i>Room Management</a>

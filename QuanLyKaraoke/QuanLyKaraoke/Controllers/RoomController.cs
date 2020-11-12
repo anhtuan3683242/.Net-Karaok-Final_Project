@@ -15,9 +15,14 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Room_Index()
         {
-
-            return View(new RoomDAO().GetList());
-
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            {
+                return View(new RoomDAO().GetList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
@@ -38,8 +43,15 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_room()
         {
-            ViewBag.loai = 0;
-            return View(new Room());
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            {
+                ViewBag.loai = 0;
+                return View(new Room());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]

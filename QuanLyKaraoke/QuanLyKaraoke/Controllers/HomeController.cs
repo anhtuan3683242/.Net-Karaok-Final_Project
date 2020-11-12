@@ -16,21 +16,43 @@ namespace QuanLyKaraoke.Controllers
         public QuanLyContext db = new QuanLyContext();
         public ActionResult Index()
         {
-            return View();
+            if (Session["S_ID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
-        public ActionResult Login2()
+        [HttpGet]
+        public ActionResult Bill()
         {
-            return View();
+            if (Session["S_ID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
-
+        [HttpGet]
         public ActionResult Order()
         {
-            return View();
+            if (Session["S_ID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpPost]
@@ -48,6 +70,7 @@ namespace QuanLyKaraoke.Controllers
                     Session["Name"] = data.Name;
                     Session["UserName"] = data.UserName;
                     Session["S_ID"] = data.S_ID;
+                    Session["Role"] = data.Role;
                     return RedirectToAction("Admin_index");
                 }
                 else
@@ -86,8 +109,14 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Admin_index()
         {
-            
-            return View(new BookingDAO().GetList());
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            {
+                return View(new BookingDAO().GetList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
         //----------Delete
         [HttpPost]
@@ -148,11 +177,18 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_booking()
         {
-            ViewBag.Loai = 0;
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            {
+                ViewBag.Loai = 0;
 
-            var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
-            ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
-            return View(new Booking());
+                var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+                ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
+                return View(new Booking());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
@@ -182,17 +218,25 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
-            ViewBag.Loai = 1;
-
-            var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
-            ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
-
-            var booking = db.Bookings.FirstOrDefault(b => b.PayID == id);
-            if (booking == null)
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
             {
-                return RedirectToAction("Admin_index");
+                ViewBag.Loai = 1;
+
+                var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+                ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
+
+                var booking = db.Bookings.FirstOrDefault(b => b.PayID == id);
+                if (booking == null)
+                {
+                    return RedirectToAction("Admin_index");
+                }
+                return View("Add_new_booking", booking);
             }
-            return View("Add_new_booking", booking);
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
         }
         [HttpPost]
         public ActionResult EditInfo(Booking model)
@@ -220,16 +264,23 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Order(int id)
         {
-            var Menu = db.Menus.Where(m => m.Stock > 0).ToList();
-            ViewBag.MenuList = new SelectList(Menu, "Food_ID", "Name");
-            ViewBag.OrderID = id;
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            {
+                var Menu = db.Menus.Where(m => m.Stock > 0).ToList();
+                ViewBag.MenuList = new SelectList(Menu, "Food_ID", "Name");
+                ViewBag.OrderID = id;
 
-            Viewmodel viewmodel = new Viewmodel();
-            viewmodel.Order_Details = new Order_DetailDAO().GetListOrder(id);
-            viewmodel.Order_Detail = new Order_Detail();
-            viewmodel.Order = new OrderDAO().GetOrderByID(id);
+                Viewmodel viewmodel = new Viewmodel();
+                viewmodel.Order_Details = new Order_DetailDAO().GetListOrder(id);
+                viewmodel.Order_Detail = new Order_Detail();
+                viewmodel.Order = new OrderDAO().GetOrderByID(id);
 
-            return View("Order", viewmodel);
+                return View("Order", viewmodel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
@@ -278,7 +329,7 @@ namespace QuanLyKaraoke.Controllers
         //convert pdf
         public ActionResult ExportPDF()
         {
-            return new ActionAsPdf("Index")
+            return new ActionAsPdf("Bill")
             {
                 FileName = Server.MapPath("~/Content/PDF.pdf")
             };
