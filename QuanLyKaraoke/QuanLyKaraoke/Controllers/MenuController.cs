@@ -13,7 +13,7 @@ namespace QuanLyKaraoke.Controllers
         // GET: Menu
         public ActionResult Menu_Index()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 return View(new MenuDAO().getList());
             }
@@ -42,7 +42,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_menu()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 ViewBag.Loai = 0;
                 return View(new Menu());
@@ -74,7 +74,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 ViewBag.Loai = 1;
 

@@ -109,7 +109,7 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Admin_index()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 return View(new BookingDAO().GetList());
             }
@@ -177,7 +177,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_booking()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 ViewBag.Loai = 0;
 
@@ -218,7 +218,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 ViewBag.Loai = 1;
 
@@ -264,7 +264,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Order(int id)
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 var Menu = db.Menus.Where(m => m.Stock > 0).ToList();
                 ViewBag.MenuList = new SelectList(Menu, "Food_ID", "Name");

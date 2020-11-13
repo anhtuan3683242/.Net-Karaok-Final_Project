@@ -13,7 +13,7 @@ namespace QuanLyKaraoke.Controllers
         // GET: Account
         public ActionResult Account_index()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() == "admin")
+            if (Session["S_ID"] != null && Session["Role"].ToString() == "Admin")
             {
                 return View(new AccountDAO().GetList());
             }
@@ -41,7 +41,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_account()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() == "admin")
+            if (Session["S_ID"] != null && Session["Role"].ToString() == "Admin")
             {
                 ViewBag.Loai = 0;
                 return View(new Account());
@@ -75,7 +75,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() == "admin")
+            if (Session["S_ID"] != null && Session["Role"].ToString() == "Admin")
             {
                 ViewBag.Loai = 1;
 
