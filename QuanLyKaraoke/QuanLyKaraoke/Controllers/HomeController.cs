@@ -17,12 +17,22 @@ namespace QuanLyKaraoke.Controllers
         {
             return View();
         }
+        public ActionResult About()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
         public ActionResult Login2()
+        {
+            return View();
+        }
+
+        public ActionResult Revenue()
         {
             return View();
         }
@@ -85,7 +95,7 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Admin_index()
         {
-            
+            var test = (new BookingDAO()).GetList();
             return View(new BookingDAO().GetList());
         }
 
@@ -182,7 +192,7 @@ namespace QuanLyKaraoke.Controllers
             var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
             ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
 
-            var booking = db.Bookings.FirstOrDefault(b => b.PayID == id);
+            var booking = db.Bookings.Include("Room").FirstOrDefault(b => b.PayID == id);
             if (booking == null)
             {
                 return RedirectToAction("Admin_index");
@@ -203,10 +213,11 @@ namespace QuanLyKaraoke.Controllers
                 book.Name_Cus = model.Name_Cus;
                 book.Phone_Cus = model.Phone_Cus;
                 book.Amount_Cus = model.Amount_Cus;
-                book.RoomID = model.RoomID;
+                book.RoomID = model.RoomID == null ? book.RoomID : model.RoomID;
                 book.DateTime = model.DateTime;
                 db.SaveChanges();
                 return RedirectToAction("Admin_index");
+                
             }
             return View(model);
         }
