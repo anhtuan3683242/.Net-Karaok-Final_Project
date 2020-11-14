@@ -12,5 +12,6 @@ namespace QuanLyKaraoke.Models
         {
             return db.Bookings.OrderBy(b => b.PayID).ToList();
         }
+
     }
 }

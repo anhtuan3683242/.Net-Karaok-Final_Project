@@ -50,7 +50,7 @@
                 <td>
                     @if (booking.Room.Status == 3)
                     {
-                        <a href="#" id="" class="btn btn-outline-success checkout" data="@booking.PayID"> Check OUT  |</a>
+                        <a href="/Home/Bill/@booking.PayID" id="" class="btn btn-outline-success" > Check OUT  |</a>
                     }
                     else
                     {
@@ -58,7 +58,7 @@
                      }
 
                     @Html.ActionLink("Edit", "EditInfo", new { id = booking.PayID }, new { @class = "btn btn-outline-warning" }) |
-                    <a href="/Home/Order/@booking.Order_ID" class="btn btn-outline-info btnOrder" data="@booking.Order_ID">Order</a> |
+                    <a href="/Home/Order/@booking.Order_ID" class="btn btn-outline-info">Order</a> |
                     <a href="#" class="btn btn-outline-danger btnDel" data="@booking.PayID">Cancel</a>
 
                 </td>

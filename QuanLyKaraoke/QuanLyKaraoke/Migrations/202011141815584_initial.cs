@@ -30,7 +30,7 @@
                         Amount_Cus = c.Int(nullable: false),
                         P_Status = c.Int(nullable: false),
                         DateTime = c.DateTime(nullable: false),
-                        Duration = c.Int(nullable: false),
+                        Duration = c.Single(nullable: false),
                         Total = c.Int(nullable: false),
                         Order_ID = c.Int(nullable: false),
                         RoomID = c.String(maxLength: 128),

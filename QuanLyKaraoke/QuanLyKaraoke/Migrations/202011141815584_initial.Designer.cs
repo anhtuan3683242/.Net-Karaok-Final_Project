@@ -13,7 +13,7 @@ namespace QuanLyKaraoke.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202011081343097_initial"; }
+            get { return "202011141815584_initial"; }
         }
         
         string IMigrationMetadata.Source
