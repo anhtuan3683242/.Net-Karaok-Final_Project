@@ -30,18 +30,7 @@ namespace QuanLyKaraoke.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Bill()
-        {
-            if (Session["S_ID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Home");
-            }
-        }
+
         [HttpGet]
         public ActionResult Order()
         {
@@ -252,7 +241,7 @@ namespace QuanLyKaraoke.Controllers
                 book.Name_Cus = model.Name_Cus;
                 book.Phone_Cus = model.Phone_Cus;
                 book.Amount_Cus = model.Amount_Cus;
-                book.RoomID = model.RoomID;
+                book.RoomID = model.RoomID == null ? book.RoomID : model.RoomID;
                 book.DateTime = model.DateTime;
                 db.SaveChanges();
                 return RedirectToAction("Admin_index");
@@ -264,23 +253,24 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Order(int id)
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
-            {
-                var Menu = db.Menus.Where(m => m.Stock > 0).ToList();
-                ViewBag.MenuList = new SelectList(Menu, "Food_ID", "Name");
-                ViewBag.OrderID = id;
+            //if (Session["S_ID"] != null && Session["Role"].ToString() != "accountant")
+            //{
+            //var Menu = db.Menus.Where(m => m.Stock > 0).ToList();
+            //ViewBag.MenuList = new SelectList(Menu, "Food_ID", "Name");
+            //ViewBag.OrderID = id;
 
-                Viewmodel viewmodel = new Viewmodel();
-                viewmodel.Order_Details = new Order_DetailDAO().GetListOrder(id);
-                viewmodel.Order_Detail = new Order_Detail();
-                viewmodel.Order = new OrderDAO().GetOrderByID(id);
+            //Viewmodel viewmodel = new Viewmodel();
+            //viewmodel.Order_Details = new Order_DetailDAO().GetListOrder(id);
+            //viewmodel.Order_Detail = new Order_Detail();
+            //viewmodel.Order = new OrderDAO().GetOrderByID(id);
 
-                return View("Order", viewmodel);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            //return View("Order", viewmodel);
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
+            return View("Order");
         }
 
         [HttpPost]
@@ -327,6 +317,30 @@ namespace QuanLyKaraoke.Controllers
             
         }
         //convert pdf
+
+        [HttpGet]
+        public ActionResult Bill(int id)
+        {
+            if (Session["S_ID"] != null)
+            {
+                var booking = db.Bookings.Where(b => b.PayID == id).FirstOrDefault();
+                if (booking == null)
+                {
+                    return RedirectToAction("Admin_index");
+                }
+
+                Bill bill = new Bill();
+                bill.Booking = booking;
+                bill.Order_Details = new Order_DetailDAO().GetListOrder(booking.Order_ID);
+                
+
+                return View("Bill",bill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
         public ActionResult ExportPDF()
         {
             return new ActionAsPdf("Bill")

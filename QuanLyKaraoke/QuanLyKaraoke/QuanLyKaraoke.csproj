@@ -158,6 +158,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountDAO.cs" />
+    <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingDAO.cs" />
     <Compile Include="Models\Menu.cs" />

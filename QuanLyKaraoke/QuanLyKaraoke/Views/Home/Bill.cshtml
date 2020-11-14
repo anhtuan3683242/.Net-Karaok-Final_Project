@@ -1,4 +1,4 @@
-﻿
+﻿@model QuanLyKaraoke.Models.Bill
 @{
     ViewBag.Title = "Bill";
     Layout = null;
@@ -13,10 +13,9 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/style_bill.css">
 </head>
 <body>
-    <header style=" height = 65px;">
+    <header style=" height: 65px;">
         <a href="#">
-            <img alt="Qries" src="~/Content/images/logo_kara9.png"
-                 width=350" height="180">
+            <img alt="Qries" src="~/Content/images/logo_kara9.png" width="350" height="180">
         </a>
 
         <br />
@@ -27,13 +26,27 @@
     <span class="s1" style="text-align: center;"><b></b></span>
     <div class="order">
         <p class="rows"><b>Staff:</b> Quoc Thang </p>
-        <p class="row"><span class="col-sm-6"><b>Customer:</b> Nguyen Van A</span> <span class="col-sm-4 phone"><b>Phone:</b> 0123456789</span></p>
-        <p class="row"><span class="col-sm-6"><b>Time in:</b> 12h</span> <span></span> <span class="col-sm-4 phone"><b>Time out:</b>12h30</span></p>
-        <p><span style="font-weight: bold">Room:</span> S102 - <span style="font-weight: bold">Vip</span> - <span>200.000</span></p>
-        <p><span style="font-weight: bold">Date:</span> ABC/abc/xyz </p>
+        <p class="row"><span class="col-sm-6"><b>Customer:</b> @Model.Booking.Name_Cus</span> <span class="col-sm-4 phone"><b>Phone:</b> @Model.Booking.Phone_Cus</span></p>
+        <p class="row"><span class="col-sm-6"><b>Time in:</b> @Model.Booking.DateTime.ToString("HH:mm tt")</span> <span></span> <span class="col-sm-4"><b>Time out:</b> @DateTime.Now.ToString("HH:mm tt")</span></p>
+        <p><span style="font-weight: bold">Room:</span> @Model.Booking.Room.RoomID - <span style="font-weight: bold"> @Model.Booking.Room.RoomType</span> - <span> @Model.Booking.Room.R_Price đ</span></p>
+        <p><span style="font-weight: bold">Date:</span> @Model.Booking.DateTime.ToString("D") </p>
+
         <span style="font-weight: bold">Your order:</span>
+        @foreach (var od in Model.Order_Details)
+        {
+            <ul class="order-items">
+                <li class="item">
+                    <span class="item-name">@od.Menu.Name</span>
 
-        <ul class="order-items">
+                    <span> X <span class="item-quantity">@od.Quantity</span> </span>
+
+                    <span class="item-price">
+                        <span>@od.Menu.Price</span>
+                    </span>
+                </li>
+            </ul>
+        }
+        @*<ul class="order-items">
             <li class="item">
                 <span class="item-name">ABCIHLASD</span>
 
@@ -65,7 +78,7 @@
                     <span>10,000</span>
                 </span>
             </li>
-        </ul>
+        </ul>*@
 
 
         <div class="summary">
