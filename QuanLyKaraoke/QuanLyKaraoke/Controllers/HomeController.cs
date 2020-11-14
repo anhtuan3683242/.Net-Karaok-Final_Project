@@ -33,14 +33,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Bill()
         {
-            if (Session["S_ID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Home");
-            }
+              return View();
         }
         [HttpGet]
         public ActionResult Order()
