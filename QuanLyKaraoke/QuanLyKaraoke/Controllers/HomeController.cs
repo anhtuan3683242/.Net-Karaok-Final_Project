@@ -305,28 +305,21 @@ namespace QuanLyKaraoke.Controllers
         //convert pdf
 
         [HttpGet]
-        public ActionResult Bill(int id)
+        public ActionResult Bill(int id, string staff)
         {
-            //if (Session["S_ID"] != null)
-            //{
-                var booking = db.Bookings.Where(b => b.PayID == id).FirstOrDefault();
-                if (booking == null)
-                {
-                    return RedirectToAction("Admin_index");
-                }
+            var booking = db.Bookings.Where(b => b.PayID == id).FirstOrDefault();
+            if (booking == null)
+            {
+                return RedirectToAction("Admin_index");
+            }
 
-                Bill bill = new Bill();
-                bill.Booking = booking;
-                bill.Order_Details = new Order_DetailDAO().GetListOrder(booking.Order_ID);
-                //ViewBag.Staff = Session["Name"].ToString();
+            Bill bill = new Bill();
+            bill.Booking = booking;
+            bill.Order_Details = new Order_DetailDAO().GetListOrder(booking.Order_ID);
+            bill.AccountName = staff == null ? Session["Name"].ToString() : staff;
 
 
             return View("Bill",bill);
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Login", "Home");
-            //}
         }
         [HttpPost]
         public ActionResult Bill(Bill model)
@@ -340,8 +333,13 @@ namespace QuanLyKaraoke.Controllers
             booking.Total = model.Booking.Total;
             booking.P_Status = 2;
 
+            var room = db.Rooms.Where(r => r.RoomID == model.Booking.Room.RoomID).FirstOrDefault();
+            room.Status = 1;
+
             db.SaveChanges();
-            return new ActionAsPdf("Bill");
+            return new ActionAsPdf("Bill", new { id = model.Booking.PayID, staff = Session["Name"].ToString() });
+            //return new ViewAsPdf(model);
+
             //{
             //    FileName = Server.MapPath("~/Content/PDF.pdf")
             //};

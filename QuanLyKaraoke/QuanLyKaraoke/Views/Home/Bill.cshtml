@@ -5,7 +5,7 @@
     float Minute = (DateTime.Now.Minute - Model.Booking.DateTime.Minute);
     Minute = Minute / 60;
     float Duration = Hour + Minute;
-    var staff = ViewBag.Staff;
+    //var staff = ViewBag.Staff;
 
     Layout = null;
 }
@@ -26,17 +26,17 @@
     <span></span>
     <span class="s1" style="text-align: center;"><b></b></span>
     <div class="order">
-        <p class="rows"><b>Staff:</b> @staff </p>
+        <p class="rows"><b>Staff:</b> @Model.AccountName </p>
         <p class="row"><span class="col-sm-6"><b>Customer:</b> @Model.Booking.Name_Cus</span> <span class="col-sm-4 phone"><b>Phone:</b> @Model.Booking.Phone_Cus</span></p>
         <p class="row"><span class="col-sm-6"><b>Time in:</b> @Model.Booking.DateTime.ToString("HH:mm tt")</span> <span></span> <span class="col-sm-4"><b>Time out:</b> @DateTime.Now.ToString("HH:mm tt")</span></p>
         <p><span style="font-weight: bold">Duration:</span> @Math.Round(Duration, 2) </p>
-        <p><span style="font-weight: bold">Room:</span> @Model.Booking.Room.RoomID - <span style="font-weight: bold"> @Model.Booking.Room.RoomType</span>: <span> @Model.Booking.Room.R_Price đ</span></p>
+        <p><span style="font-weight: bold">Room:</span> @Model.Booking.Room.RoomID - <span style="font-weight: bold"> @Model.Booking.Room.RoomType</span>: <span> @(Convert.ToDecimal(Model.Booking.Room.R_Price).ToString("#,##0")) đ</span></p>
         <p><span style="font-weight: bold">Date:</span> @Model.Booking.DateTime.ToString("D") </p>
 
         <span style="font-weight: bold">Your order:</span>
         @foreach (var od in Model.Order_Details)
         {
-            <p style="margin-left:24px;">@od.Menu.Name <span id="money" class="tax"> @od.Menu.Price x @od.Quantity</span></p>
+            <p style="margin-left:24px;">@od.Menu.Name <span id="money" class="tax">@(Convert.ToDecimal(od.Menu.Price).ToString("#,##0")) x @od.Quantity</span></p>
         }
         @{
             //Tính tiền giờ
@@ -47,10 +47,10 @@
             var Total = Hourly + Tax;
         }
         <div class="summary">
-            <p>Total Services<span id="money" class="subtotal">@Model.Booking.Order.O_total đ</span></p>
-            <p>Total Hourly<span id="money" class="tax">@Hourly đ</span></p>
-            <p>Tax 10%<span id="money" class="tax">@Tax đ</span></p>
-            <p>Total<span id="money" class="total">@Total đ</span></p>
+            <p>Total Services<span id="money" class="subtotal">@(Convert.ToDecimal(Model.Booking.Order.O_total).ToString("#,##0")) đ</span></p>
+            <p>Total Hourly<span id="money" class="tax">@(Convert.ToDecimal(Hourly).ToString("#,##0")) đ</span></p>
+            <p>Tax 10%<span id="money" class="tax">@(Convert.ToDecimal(Tax).ToString("#,##0")) đ</span></p>
+            <p>Total<span id="money" class="total">@(Convert.ToDecimal(Total).ToString("#,##0")) đ</span></p>
         </div>
         <form id="form_post" action="#" method="post">
             <div class="neon-btn">
@@ -59,6 +59,7 @@
                 @Html.HiddenFor(d => d.Booking.Duration, new { @class = "form-control", Value = Duration })
                 @Html.HiddenFor(d => d.Booking.Total, new { @class = "form-control", Value = Total })
                 @Html.HiddenFor(d => d.Booking.PayID)
+                @Html.HiddenFor(d => d.Booking.Room.RoomID)
                 <span></span>
                 <span></span>
                 <span></span>
