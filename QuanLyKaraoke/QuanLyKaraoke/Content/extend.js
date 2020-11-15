@@ -5,7 +5,8 @@ var m = d.getMinutes();
 var date = d.toDateString();
 var res = date + " " + h + ":" + m;
 document.getElementById("date_time").innerHTML = res;
-
+document.getElementById("min").value = date;
+document.getElementById("max").value = date + 1;
 
 //Set date time field
 var today = new Date();
@@ -81,18 +82,6 @@ $(document).ready(function () {
     });
 });
 
-//Date time range filter
-//$.fn.dataTable.ext.search.push(
-//    function (oSettings, aData, iDataIndex) {
-//        var cellDate = moment(aData[0]);
-//        return cellDate.isBefore(moment($("#max").val())) && cellDate.isAfter(moment($("#min").val()));
-//    }
-//);
-
-
-
-
-
 $(document).ready(function () {
     console.log('adada');
         $.fn.dataTableExt.afnFiltering.push(
@@ -103,10 +92,10 @@ $(document).ready(function () {
         );
 
         var oTable = $('#table-mutasi').dataTable({
-            "iDisplayLength": 25,
-            "lengthChange": false,
-            "ordering": false,
-            "info": false
+            "iDisplayLength": 6,
+            //"lengthChange": false,
+            //"ordering": false,
+            //"info": false
         });
         $('#min,#max').datepicker({
             format: "dd M yyyy",

@@ -6,16 +6,16 @@
 
 <h1 class="title">Manage Booking Orders</h1>
 @*For filtering*@
-<section>
-    <input type="text" id="myInput" placeholder="Search anything...">
+<!--<section>
+    <input type="text" id="myInput" placeholder="Search anything...">-->
     @*From*@
-    <input id="currdate" class="currdate">
+    <!--<input id="currdate" class="currdate">-->
     @*To*@
-    <input id="nextdate" class="nextdate">
+    <!--<input id="nextdate" class="nextdate">
 
 </section>
 <a href="/Home/Add_new_booking" class="btn btn-info">Add new</a>
-<table class="table table-hover">
+<table class="table table-hover" >
     <thead>
         <tr>
             <th scope="col">Room ID</th>
@@ -23,84 +23,97 @@
             <th scope="col">Booking Status</th>
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
-            <th scope="col"></th>
+            <th scope="col">.</th>
         </tr>
     </thead>
     <tbody id="myTable">
+        //30 Oct 2016
         @foreach (var booking in Model)
         {
-            <tr>
-                <td scope="row">@booking.Room.RoomID.ToString()</td>
-                <td>@booking.DateTime</td>
-                @if (booking.P_Status == 1)
-                {
-                    <td style="color:yellowgreen">Using</td>
-                }
-                @if (booking.P_Status == 2)
-                {
-                    <td style="color:green">Finish</td>
-                }
+        <tr>
+            <td scope="row">@booking.Room.RoomID.ToString()</td>
+            <td>@booking.DateTime.ToString("dd MMM yyyy hh:mm")</td>
+            @if (booking.P_Status == 1)
+            {
+                <td style="color:yellowgreen">Using</td>
+            }
+            @if (booking.P_Status == 2)
+            {
+                <td style="color:green">Finish</td>
+            }
 
-                @if (booking.P_Status == 3)
-                {
-                    <td style="color:red">Cancel</td>
-                }
-                <td>@booking.Name_Cus</td>
-                <td>@booking.Phone_Cus</td>
-                <td>
-                    <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@booking.PayID"> Check IN</a> |
-                    @Html.ActionLink("Edit", "EditInfo", new { id = booking.PayID }, new { @class = "btn btn-outline-warning" }) |
-                    <a href="/Home/Order" class="btn btn-outline-info btnOrder" data="@booking.PayID">Order</a> |
-                    <a href="#" class="btn btn-outline-danger btnDel" data="@booking.PayID">Cancel</a>
-
-                </td>
-            </tr>
+            @if (booking.P_Status == 3)
+            {
+                <td style="color:red">Cancel</td>
+            }
+            <td>@booking.Name_Cus</td>
+            <td>@booking.Phone_Cus</td>
+            <td>
+                <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@booking.PayID"> Check IN</a> |
+                @Html.ActionLink("Edit", "EditInfo", new { id = booking.PayID }, new { @class = "btn btn-outline-warning" }) |
+                <a href="/Home/Order" class="btn btn-outline-info btnOrder" data="@booking.PayID">Order</a> |
+                <a href="#" class="btn btn-outline-danger btnDel" data="@booking.PayID">Cancel</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+<a href="/Home/Add_new_booking" class="btn btn-info">Add new</a>-->
+
 <a href="/Home/Add_new_booking" class="btn btn-info">Add new</a>
-
-
 <div class="form-group">
     <div class="input-group input-daterange">
-        <input type="text" id="min" class="form-control" value="30 Oct 2016">
+        <input type="text" id="min" class="form-control" value="14 Nov 2020">
         <span class="input-group-addon">to</span>
-        <input type="text" id="max" class="form-control" value="04 Nov 2016">
+        <input type="text" id="max" class="form-control" value="17 Nov 2020">
     </div>
 </div>
-<table class="table table-striped table-bordered table-hover table-condensed" id="table-mutasi">
+<table class="table table-hover" id="table-mutasi" style="width:1100px;">
     <thead>
         <tr>
             <th>Date</th>
-            <th>Product</th>
-            <th>Point</th>
+            <th>Room ID</th>
+            <th>Status</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th></th>
+
         </tr>
     </thead>
     <tbody>
+        @foreach (var test in Model)
+        {
         <tr>
-            <td>30 Oct 2016 16:20</td>
-            <td>PX5</td>
-            <td>50</td>
+            <td>@test.DateTime.ToString("dd MMM yyyy hh:mm")</td>
+            <td scope="row">@test.Room.RoomID.ToString()</td>
+            @if (test.P_Status == 1)
+            {
+                <td style="color:yellowgreen">Using</td>
+            }
+            @if (test.P_Status == 2)
+            {
+                <td style="color:green">Finish</td>
+            }
+
+            @if (test.P_Status == 3)
+            {
+                <td style="color:red">Cancel</td>
+            }
+            <td>@test.Name_Cus</td>
+            <td>@test.Phone_Cus</td>
+            <td>
+                <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@test.PayID"> Check IN</a> |
+                @Html.ActionLink("Edit", "EditInfo", new { id = test.PayID }, new { @class = "btn btn-outline-warning" }) |
+                <a href="/Home/Order" class="btn btn-outline-info btnOrder" data="@test.PayID">Order</a> |
+                <a href="#" class="btn btn-outline-danger btnDel" data="@test.PayID">Cancel</a>
+            </td>
         </tr>
-        <tr>
-            <td>02 Nov 2016 16:20</td>
-            <td>PLN100</td>
-            <td>250</td>
-        </tr>
-        <tr>
-            <td>04 Nov 2016 16:20</td>
-            <td>IJ10</td>
-            <td>50</td>
-        </tr>
+        }
     </tbody>
 </table>
 
 
 <script type="text/javascript">
-
-    
-
-    
 
         //Script duoc chuyen het vao file ~Conten/extend.js
     $(document).ready(function () {
@@ -131,7 +144,6 @@
     });
 
 </script>
-}
 
 
 
