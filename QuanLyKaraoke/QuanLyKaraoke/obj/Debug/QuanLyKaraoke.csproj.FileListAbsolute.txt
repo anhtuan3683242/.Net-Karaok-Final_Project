@@ -430,6 +430,8 @@ C:\Users\Admin\Desktop\CuoiKyP\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKar
 C:\Users\Admin\Desktop\CuoiKyP\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\AuthorizeNet.xml
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\AuthorizeNet.dll
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\AuthorizeNet.xml
+C:\Users\Admin\Desktop\CuoiKyP\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.initial.resources
+C:\Users\Admin\Desktop\CuoiKyP\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.init.resources
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 C:\Users\Admin\Desktop\CuoiKyP\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\Rotativa.dll
