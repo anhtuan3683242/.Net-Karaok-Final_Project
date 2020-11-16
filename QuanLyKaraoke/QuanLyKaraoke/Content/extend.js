@@ -1,20 +1,20 @@
-﻿//SET DATE NAVBAR
-var d = new Date();
-var h = d.getHours();
-var m = d.getMinutes();
-var date = d.toDateString();
-var res = date + " " + h + ":" + m;
-document.getElementById("date_time").innerHTML = res;
-document.getElementById("min").value = date;
-document.getElementById("max").value = date + 1;
+﻿
+//DATE TIME SETTING
+$(document).ready(function () {
+    //SET DATE NAVBAR
+    document.getElementById("date_time").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');;
+    //Set date time field
+    $("#min").val(moment().format('DD MMM YYYY'));
+    $("#max").val(moment().add(1, 'days').format('DD MMM YYYY'));
+
+});
+
 
 //Set date time field
 var today = new Date();
 
 //set curr date
 var dd = String(today.getDate()).padStart(2, '0');
-//set next date
-var nd = String(today.getDate() + 1).padStart(2, '0');
 
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
@@ -28,17 +28,6 @@ $('.currdate').datetimepicker({
     value: today
 });
 
-//datebook
-$('.currdate2').datetimepicker({
-    step: 30,
-});
-
-//nextdate
-nextdate = yyyy + '-' + mm + '-' + nd + ' ' + hh + ':' + mn;
-$('.nextdate').datetimepicker({
-    step: 30,
-    value: nextdate
-});
 
 
 //Delete booking function
