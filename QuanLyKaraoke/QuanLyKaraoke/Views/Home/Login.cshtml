@@ -38,27 +38,38 @@
     <div class="limiter">
         <div class="container-login100" style="background-image: url('/Content/images/bg-05.jpg');">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Login", "Home",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "login100-form validate-form" }))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
                     <span class="login100-form-title p-b-49">
                         Login
                     </span>
+                    if (ViewBag.exc == 1)
+                    {
+                        <div name="error" class="alert alert-danger" role="alert">
+                            Invalid Account
+                        </div>
+                    }
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
-                        <span class="label-input100">UserName</span>
-                        @Html.TextBoxFor(m => m.UserName, "", new { @class = "input100", @placeholder = "Type your username" })
-
+                        <span class="label-input100">User Name:</span>
+                        <input class="input100" type="text" name="username" placeholder="Type your username">
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <span class="label-input100">PassWord</span>
+                        <span class="label-input100">Pass Word:</span>
                         @Html.PasswordFor(m => m.PassWord, new { @class = "input100", @placeholder = "Type your password" })
+                        @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger" })
                         <span class="focus-input100" data-symbol="&#xf190;"></span>
                     </div>
 
                     <div class="text-right p-t-8 p-b-31">
+                        <h3>@ViewBag.Error</h3>
                     </div>
 
                     <div class="container-login100-form-btn">
@@ -69,6 +80,10 @@
                             </button>
                         </div>
 
+                    </div>
+
+                    <div>
+                        <p></p>
                     </div>
 
 
