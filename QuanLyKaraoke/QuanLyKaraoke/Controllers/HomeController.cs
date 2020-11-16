@@ -34,7 +34,7 @@ namespace QuanLyKaraoke.Controllers
         public ActionResult Login()
         {
             return View();
-        }      return View();
+        }
 
 
         public ActionResult Revenue()

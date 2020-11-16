@@ -13,11 +13,7 @@ namespace QuanLyKaraoke.Migrations
         
         string IMigrationMetadata.Id
         {
-<<<<<<< HEAD:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011160546293_initial.Designer.cs
-            get { return "202011160546293_initial"; }
-=======
-            get { return "202011160722097_init"; }
->>>>>>> Cong_branch:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011160722097_init.Designer.cs
+            get { return "202011161121469_initial"; }
         }
         
         string IMigrationMetadata.Source
