@@ -25,11 +25,24 @@ namespace QuanLyKaraoke.Controllers
                 return RedirectToAction("Login");
             }
         }
+        public ActionResult About()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
+
+
+        public ActionResult Revenue()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(string UserName, string PassWord)
@@ -231,6 +244,7 @@ namespace QuanLyKaraoke.Controllers
                 book.DateTime = model.DateTime;
                 db.SaveChanges();
                 return RedirectToAction("Admin_index");
+                
             }
             return View(model);
         }

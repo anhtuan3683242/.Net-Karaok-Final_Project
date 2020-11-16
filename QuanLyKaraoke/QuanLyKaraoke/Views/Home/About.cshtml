@@ -1,7 +1,108 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@*@{
+        ViewBag.Title = "About";
+    }
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+    <p>Use this area to provide additional information.</p>*@
+
+
+@{
+    Layout = null;
+}
+<html>
+<head>
+
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment-with-locales.min.js"></script>*@
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+
+    @*For dropdown search list*@
+    @*<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />*@
+
+    @*Search*@
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+
+    @*date range*@
+    <link rel="stylesheet" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment-with-locales.min.js"></script>
+
+</head>
+<div class="form-group">
+    <div class="input-group input-daterange">
+        <input type="text" id="min" class="form-control" value="04 Nov 2016">
+        <span class="input-group-addon">to</span>
+        <input type="text" id="max" class="form-control" value="04 Nov 2016">
+    </div>
+</div>
+<table class="table table-striped table-bordered table-hover table-condensed" id="table-mutasi">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Point</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>30 Oct 2016 16:20</td>
+            <td>PX5</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>02 Nov 2016 16:20</td>
+            <td>PLN100</td>
+            <td>250</td>
+        </tr>
+        <tr>
+            <td>04 Nov 2016 16:20</td>
+            <td>IJ10</td>
+            <td>50</td>
+        </tr>
+    </tbody>
+</table>
+</html>
+<script src="~/Content/extend.js"></script>
+
+@*<script>
+    
+
+    $(document).ready(function () {
+        $.fn.dataTableExt.afnFiltering.push(
+            function (oSettings, aData, iDataIndex) {
+                var cellDate = moment(aData[0]);
+                return cellDate.isBefore(moment($("#max").val())) && cellDate.isAfter(moment($("#min").val()))
+            }
+        );
+
+        var oTable = $('#table-mutasi').dataTable({
+            "iDisplayLength": 25,
+            "lengthChange": false,
+            "ordering": false,
+            "info": false
+        });
+        $('#min,#max').datepicker({
+            format: "dd M yyyy",
+            weekStart: 1,
+            daysOfWeekHighlighted: "0",
+            autoclose: true,
+            todayHighlight: true
+        });
+        $('#min,#max').change(function () {
+            oTable.fnDraw();
+        });
+    });
+</script>*@
+
+
