@@ -63,10 +63,11 @@ namespace QuanLyKaraoke.Controllers
                 }
                 else
                 {
-                    ViewBag.error = "Login Failed";
-                    return RedirectToAction("Index");
+                    ViewBag.exc = 1;
+                    return View();
                 }
             }
+            ViewBag.exc = 1;
             return View();
         }
         //Logout
