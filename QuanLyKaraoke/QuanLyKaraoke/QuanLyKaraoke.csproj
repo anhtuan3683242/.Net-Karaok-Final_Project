@@ -147,9 +147,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011161121469_initial.cs" />
-    <Compile Include="Migrations\202011161121469_initial.designer.cs">
-      <DependentUpon>202011161121469_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202011170659366_initial.cs" />
+    <Compile Include="Migrations\202011170659366_initial.designer.cs">
+      <DependentUpon>202011170659366_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -189,6 +189,8 @@
     <Content Include="Content\fonts\iconic\css\material-design-iconic-font.css" />
     <Content Include="Content\fonts\iconic\css\material-design-iconic-font.min.css" />
     <Content Include="Content\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\images\Accountant.png" />
+    <Content Include="Content\images\Admin.png" />
     <Content Include="Content\images\bg-01.jpg" />
     <Content Include="Content\images\bg-05.jpg" />
     <Content Include="Content\images\icons\favicon.ico" />
@@ -2131,8 +2133,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011161121469_initial.resx">
-      <DependentUpon>202011161121469_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011170659366_initial.resx">
+      <DependentUpon>202011170659366_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

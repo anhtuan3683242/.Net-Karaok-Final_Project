@@ -63,12 +63,13 @@ label {
     transition-property: left;
 }
 
-.sidebar .profile_image {
-    width: 140px;
-    height: 140px;
-    border-radius: 100px;
-    margin-bottom: 10px;
-}
+    .sidebar .profile_image {
+        width: 160px;
+        height: 160px;
+        border-radius: 90px;
+        margin-bottom: 10px;
+        vertical-align: middle;
+    }
 
 .sidebar h4 {
     color: white;
