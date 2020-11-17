@@ -72,8 +72,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var test = document.getElementById("myBarChart").value;
-    console.log(test);
         $.fn.dataTableExt.afnFiltering.push(
             function (oSettings, aData, iDataIndex) {
                 var cellDate = moment(aData[0]);
