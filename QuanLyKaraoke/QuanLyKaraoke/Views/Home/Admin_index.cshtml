@@ -1,74 +1,83 @@
 ﻿@model IEnumerable<QuanLyKaraoke.Models.Booking>
 @{
     ViewBag.Title = "Admin Home Page";
-
 }
-
 <h1 class="title">Manage Booking Orders</h1>
-@*For filtering*@
-<section>
-    <input type="text" id="myInput" placeholder="Search anything...">
-    @*From*@
-    <input id="currdate" class="currdate">
-    @*To*@
-    <input id="nextdate" class="nextdate">
 
-</section>
+
 <a href="/Home/Add_new_booking" class="btn btn-info">Add new</a>
-<table class="table table-hover">
+<div class="form-group">
+    @*Fillter Date Range*@
+    <div class="input-group input-daterange">
+        <input type="text" id="min" class="form-control">
+        <span class="input-group-addon">to</span>
+        <input type="text" id="max" class="form-control">
+    </div>
+</div>
+<table class="table table-hover" id="table-mutasi" style="width:1100px;">
     <thead>
         <tr>
-            <th scope="col">Room ID</th>
-            <th scope="col">Start Time</th>
-            <th scope="col">Booking Status</th>
-            <th scope="col">Name</th>
-            <th scope="col">Phone</th>
-            <th scope="col"></th>
+            <th>Date</th>
+            <th>Room ID</th>
+            <th>Status</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th></th>
+
         </tr>
     </thead>
-    <tbody id="myTable">
-        @foreach (var booking in Model)
+    <tbody>
+        @foreach (var test in Model)
         {
             <tr>
-                <th scope="row" >@booking.Room.RoomID.ToString()</th>
-                <td>@booking.DateTime</td>
-                @if (booking.P_Status == 1)
+                <td>@test.DateTime.ToString("dd MMM yyyy hh:mm")</td>
+                <td scope="row">@test.Room.RoomID.ToString()</td>
+                @if (test.P_Status == 1)
                 {
-                    <td style="color:yellowgreen">wait for payment</td>
+                    <td style="color:yellowgreen">Using</td>
                 }
-                @if (booking.P_Status == 2)
+                @if (test.P_Status == 2)
                 {
-                    <td style="color:green">payment success</td>
+                    <td style="color:green">Finish</td>
                 }
 
-                @if (booking.P_Status == 3)
+                @if (test.P_Status == 3)
                 {
-                    <td style="color:red">was cancel</td>
+                    <td style="color:red">Cancel</td>
                 }
-                <td>@booking.Name_Cus</td>
-                <td>@booking.Phone_Cus</td>
+                <td>@test.Name_Cus</td>
+                <td>@test.Phone_Cus</td>
                 <td>
-                    @if (booking.Room.Status == 3)
+                    @if (test.P_Status == 2)
                     {
-                        <a href="#" id="" class="btn btn-outline-success checkout" data="@booking.PayID"> Check OUT  |</a>
+                        <a href="#" class="btn btn-outline-success" disabled style="width:146px;"> Already Payment  </a>
                     }
-                    else
+                    @if (test.P_Status == 1)
                     {
-                        <a href="#" id="checkout" class="btn btn-outline-success checkout" data="@booking.PayID"> Check IN  |</a> 
-                     }
-
-                    @Html.ActionLink("Edit", "EditInfo", new { id = booking.PayID }, new { @class = "btn btn-outline-warning" }) |
-                    <a href="/Home/Order/@booking.Order_ID" class="btn btn-outline-info btnOrder" data="@booking.Order_ID">Order</a> |
-                    <a href="#" class="btn btn-outline-danger btnDel" data="@booking.PayID">Cancel</a>
+                        if (test.Room.Status == 3)
+                        {
+                            <a href="/Home/Bill/@test.PayID" id="" class="btn btn-outline-success" style="width:146px;"> Check OUT  </a>
+                        }
+                        if (test.Room.Status == 2)
+                        {
+                            <a href="#" id="checkout" class="btn btn-outline-success checkout" style="width:146px;" data="@test.PayID"> Check IN  </a>
+                        }
+                    }
+                    | @Html.ActionLink("Edit", "EditInfo", new { id = test.PayID }, new { @class = "btn btn-outline-warning" }) |
+                    <a href="/Home/Order/@test.Order_ID" class="btn btn-outline-info">Order</a> |
+                    <a href="#" class="btn btn-outline-danger btnDel" data="@test.PayID">Cancel</a>
 
                 </td>
             </tr>
         }
+
     </tbody>
 </table>
-<a href="/Home/Add_new_booking" class="btn btn-info">Add new</a>
-<script>
-//Script duoc chuyen het vao file ~Conten/extend.js
+
+
+<script type="text/javascript">
+
+        //Script duoc chuyen het vao file ~Conten/extend.js
     $(document).ready(function () {
         $('.checkout').click(function (e) {
             //bỏ tác dụng bấm mặc định
@@ -98,7 +107,9 @@
             
         });
     });
+
 </script>
+
 
 
 

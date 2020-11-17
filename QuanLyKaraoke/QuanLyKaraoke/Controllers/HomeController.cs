@@ -25,28 +25,23 @@ namespace QuanLyKaraoke.Controllers
                 return RedirectToAction("Login");
             }
         }
+        public ActionResult About()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Bill()
+
+
+        public ActionResult Revenue()
         {
-              return View();
+            return View();
         }
-        [HttpGet]
-        public ActionResult Order()
-        {
-            if (Session["S_ID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -246,10 +241,11 @@ namespace QuanLyKaraoke.Controllers
                 book.Name_Cus = model.Name_Cus;
                 book.Phone_Cus = model.Phone_Cus;
                 book.Amount_Cus = model.Amount_Cus;
-                book.RoomID = model.RoomID;
+                book.RoomID = model.RoomID == null ? book.RoomID : model.RoomID;
                 book.DateTime = model.DateTime;
                 db.SaveChanges();
                 return RedirectToAction("Admin_index");
+                
             }
             return View(model);
         }
@@ -275,6 +271,7 @@ namespace QuanLyKaraoke.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
+
         }
 
         [HttpPost]
@@ -321,12 +318,46 @@ namespace QuanLyKaraoke.Controllers
             
         }
         //convert pdf
-        public ActionResult ExportPDF()
+
+        [HttpGet]
+        public ActionResult Bill(int id, string staff)
         {
-            return new ActionAsPdf("Bill")
+            var booking = db.Bookings.Where(b => b.PayID == id).FirstOrDefault();
+            if (booking == null)
             {
-                FileName = Server.MapPath("~/Content/PDF.pdf")
-            };
+                return RedirectToAction("Admin_index");
+            }
+
+            Bill bill = new Bill();
+            bill.Booking = booking;
+            bill.Order_Details = new Order_DetailDAO().GetListOrder(booking.Order_ID);
+            bill.AccountName = staff == null ? Session["Name"].ToString() : staff;
+
+
+            return View("Bill",bill);
+        }
+        [HttpPost]
+        public ActionResult Bill(Bill model)
+        {
+            var booking = db.Bookings.Where(b => b.PayID == model.Booking.PayID).FirstOrDefault();
+            if(booking == null)
+            {
+                return RedirectToAction("Admin_index");
+            }
+            booking.Duration = model.Booking.Duration;
+            booking.Total = model.Booking.Total;
+            booking.P_Status = 2;
+
+            var room = db.Rooms.Where(r => r.RoomID == model.Booking.Room.RoomID).FirstOrDefault();
+            room.Status = 1;
+
+            db.SaveChanges();
+            return new ActionAsPdf("Bill", new { id = model.Booking.PayID, staff = Session["Name"].ToString() });
+            //return new ViewAsPdf(model);
+
+            //{
+            //    FileName = Server.MapPath("~/Content/PDF.pdf")
+            //};
         }
     }
 }
