@@ -147,9 +147,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011170659366_initial.cs" />
-    <Compile Include="Migrations\202011170659366_initial.designer.cs">
-      <DependentUpon>202011170659366_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202011171434547_Init.cs" />
+    <Compile Include="Migrations\202011171434547_Init.designer.cs">
+      <DependentUpon>202011171434547_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -194,7 +194,6 @@
     <Content Include="Content\images\bg-01.jpg" />
     <Content Include="Content\images\bg-05.jpg" />
     <Content Include="Content\images\icons\favicon.ico" />
-    <Content Include="Content\images\img.jpg" />
     <Content Include="Content\images\logo_kara.jpg" />
     <Content Include="Content\images\logo_kara8.png" />
     <Content Include="Content\images\logo_kara9.png" />
@@ -2133,8 +2132,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011170659366_initial.resx">
-      <DependentUpon>202011170659366_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011171434547_Init.resx">
+      <DependentUpon>202011171434547_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
