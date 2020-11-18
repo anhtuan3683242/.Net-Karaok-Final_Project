@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Revenue";
-    
+
 }
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -40,7 +40,7 @@
             <!-- Bar Chart -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart: Số lượng đơn book phòng qua từng tháng</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Number of guests through each month</h6>
                 </div>
                 <div class="card-body">
                     <div class="chart-bar">
@@ -78,7 +78,7 @@
 <!-- /.container-fluid -->
 
 @section scripts{
-    
+
     <script type="text/javascript">
         //o tren co tao 1 model revenueModel de test do du lieu va tao du lieu ao? trong ham` revenue trong Homecontroller
         //**tu tao ra Revenue controller va` xu ly du lieu di nhe
@@ -87,7 +87,7 @@
         var dataJson = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
         console.log(dataJson);//mo console len de xem du lieu sau khi convert
         $(document).ready(function () {
-            console.log(dataJson.DoanhThuChart.Labels);
+            console.log(dataJson.DoanhThuChart.Data);
             //truyen du lieu vao` function(trc tien phai tao. 1 funciton va` them du lieu dau` vao`)
             setDataForBarChart(dataJson.DoanhThuChart.Labels, dataJson.DoanhThuChart.Data);
         });

@@ -63,19 +63,19 @@ function setDataForBarChart(labels ,data) {
                         drawBorder: false
                     },
                     ticks: {
-                        maxTicksLimit: 6
+                        maxTicksLimit: 12
                     },
                     maxBarThickness: 25,
                 }],
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 20,
-                        maxTicksLimit: 5,
+                        max: 1000,
+                        maxTicksLimit: 10,
                         padding: 10,
-                        // Include a dollar sign in the ticks
+                        // Number of guests
                         callback: function (value, index, values) {
-                            return '$' + number_format(value);
+                            return number_format(value) + " guests";
                         }
                     },
                     gridLines: {
@@ -105,7 +105,8 @@ function setDataForBarChart(labels ,data) {
                 callbacks: {
                     label: function (tooltipItem, chart) {
                         var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                        //return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+                        return  'Total: ' + number_format(tooltipItem.yLabel);
                     }
                 }
             },

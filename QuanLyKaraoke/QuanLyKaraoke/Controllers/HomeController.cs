@@ -37,31 +37,6 @@ namespace QuanLyKaraoke.Controllers
         }
 
 
-        public ActionResult Revenue()
-        {
-            var labels = new List<string>();
-            labels.Add("Tháng 1");
-            labels.Add("Tháng 2");
-            labels.Add("Tháng 4");
-
-            var data = new List<int>();
-            data.Add(3);
-            data.Add(5);
-            data.Add(7);
-
-            var doanhthu = new BarChart()
-            {
-                Labels = labels,
-                Data = data
-            };
-
-            var model = new RevenueModel()
-            {
-                DoanhThuChart = doanhthu
-            };
-
-            return View(model);
-        }
 
 
         [HttpPost]
