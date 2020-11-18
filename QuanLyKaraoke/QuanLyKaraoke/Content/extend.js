@@ -1,13 +1,17 @@
 ﻿
-//DATE TIME SETTING
-$(document).ready(function () {
-    //SET DATE NAVBAR
-    document.getElementById("date_time").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');;
-    //Set date time field
-    $("#min").val(moment().format('DD MMM YYYY'));
-    $("#max").val(moment().add(1, 'days').format('DD MMM YYYY'));
-
-});
+function clockTick() {
+    var currentTime = new Date(),
+        month = currentTime.getMonth() + 1,
+        day = currentTime.getDate(),
+        year = currentTime.getFullYear(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes(),
+        seconds = currentTime.getSeconds(),
+        text = (month + "/" + day + "/" + year + ' ' + hours + ':' + minutes + ':' + seconds);
+    // here we get the element with the id of "date" and change the content to the text variable we made above
+    document.getElementById('date_time').innerHTML = text;
+}
+setInterval(clockTick, 1000);
 
 
 //Set date time field
