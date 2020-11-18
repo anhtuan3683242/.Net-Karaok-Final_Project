@@ -17,11 +17,16 @@ namespace QuanLyKaraoke.Controllers
             {
                 return View(new MenuDAO().getList());
             }
+            else if (Session["S_ID"] != null)
+            {
+                TempData["ErrorMessage"] = "You are not authorized to access this page";
+                return RedirectToAction("Admin_index", "Home");
+            }
             else
             {
                 return RedirectToAction("Login", "Home");
             }
-            
+
         }
 
         [HttpPost]
@@ -46,6 +51,11 @@ namespace QuanLyKaraoke.Controllers
             {
                 ViewBag.Loai = 0;
                 return View(new Menu());
+            }
+            else if (Session["S_ID"] != null)
+            {
+                TempData["ErrorMessage"] = "You are not authorized to access this page";
+                return RedirectToAction("Admin_index", "Home");
             }
             else
             {
@@ -84,6 +94,11 @@ namespace QuanLyKaraoke.Controllers
                     return RedirectToAction("Menu_index");
                 }
                 return View("Add_new_menu", menu);
+            }
+            else if (Session["S_ID"] != null)
+            {
+                TempData["ErrorMessage"] = "You are not authorized to access this page";
+                return RedirectToAction("Admin_index", "Home");
             }
             else
             {

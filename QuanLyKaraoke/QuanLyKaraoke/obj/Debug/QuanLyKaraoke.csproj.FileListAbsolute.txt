@@ -607,8 +607,6 @@ D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\Newton
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\Antlr3.Runtime.pdb
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csprojAssemblyReference.cache
-D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.initial.resources
-D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CoreCompileInputs.cache
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.CopyComplete
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
@@ -703,3 +701,5 @@ C:\Users\Admin\Desktop\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKarao
 C:\Users\Admin\Desktop\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
 C:\Users\Admin\Desktop\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.initial.resources
 C:\Users\Admin\Desktop\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
+D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.Init.resources
+D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
