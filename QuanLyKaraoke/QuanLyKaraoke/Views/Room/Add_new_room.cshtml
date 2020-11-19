@@ -20,6 +20,7 @@
                 <td><p> RoomID</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.RoomID, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoomID, "", new { @class = "text-danger" })
                 </td>
 
             </tr>
@@ -28,7 +29,7 @@
                 <td>
                     <div class="form-group">
                         <label class="radio-inline">
-                            @Html.RadioButtonFor(model => model.RoomType, "Standard", new { @name = "type" })
+                            @Html.RadioButtonFor(model => model.RoomType, "Standard", new { @name = "type" , @checked = "checked" })
                             <span style="font-size:18px;">Standard</span>
                         </label>
                         <label class="radio-inline">

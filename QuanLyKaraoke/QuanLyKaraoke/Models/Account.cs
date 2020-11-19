@@ -22,6 +22,7 @@ namespace QuanLyKaraoke.Models
         [Required]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]
         public string PassWord { get; set; }
+        [Required]
         public string Role { get; set; }
     }
 }

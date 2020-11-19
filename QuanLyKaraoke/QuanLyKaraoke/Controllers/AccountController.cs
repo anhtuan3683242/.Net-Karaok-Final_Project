@@ -65,24 +65,35 @@ namespace QuanLyKaraoke.Controllers
         [HttpPost]
         public ActionResult Add_new_account(Account model)
         {
-            ViewBag.Loai = 0;
-
-            var Account = db.Accounts.Where(a => a.Name == model.Name).FirstOrDefault();
-            if (Account != null)
+            try
             {
-                ViewBag.exc = 1;
+                if (ModelState.IsValid)
+                {
+                    ViewBag.Loai = 0;
+
+                    var Account = db.Accounts.Where(a => a.Name == model.Name).FirstOrDefault();
+                    if (Account != null)
+                    {
+                        ViewBag.exc = 1;
+                        return View(model);
+                    }
+
+                    db.Accounts.Add(model);
+                    db.SaveChanges();
+                    return RedirectToAction("Account_index");
+                }
+                ViewBag.Loai = 0;
                 return View(model);
             }
-
-            db.Accounts.Add(model);
-            db.SaveChanges();
-            return RedirectToAction("Account_index");
+            catch
+            {
+                ViewBag.Loai = 0;
+                return View();
+            }
         }
-
-
-        //Edit
-        //----------------------------
-        [HttpGet]
+            //Edit
+            //----------------------------
+         [HttpGet]
         public ActionResult EditInfo(int id)
         {
             if (Session["S_ID"] != null && Session["Role"].ToString() == "Admin")
@@ -110,23 +121,30 @@ namespace QuanLyKaraoke.Controllers
         public ActionResult EditInfo(Account model)
         {
             ViewBag.Loai = 1;
-            if (ModelState.IsValid)
+            try
             {
-                //lưu ý bắt lỗi ở đây
-                //lấy data cũ
+                if (ModelState.IsValid)
+                {
+                    //lưu ý bắt lỗi ở đây
+                    //lấy data cũ
 
-                var Account = db.Accounts.FirstOrDefault(a => a.S_ID == model.S_ID);
-                //gán các thông tin mới vào đối tượng lấy từ CSDL
-                Account.Name = model.Name;
-                Account.Phone = model.Phone;
-                Account.Role = model.Role;
-                Account.UserName = model.UserName;
-                //Xy ly bat loi~ PassWord
-                Account.PassWord = model.PassWord;
-                db.SaveChanges();
-                return RedirectToAction("Account_index");
+                    var Account = db.Accounts.FirstOrDefault(a => a.S_ID == model.S_ID);
+                    //gán các thông tin mới vào đối tượng lấy từ CSDL
+                    Account.Name = model.Name;
+                    Account.Phone = model.Phone;
+                    Account.Role = model.Role;
+                    Account.UserName = model.UserName;
+                    //Xy ly bat loi~ PassWord
+                    Account.PassWord = model.PassWord;
+                    db.SaveChanges();
+                    return RedirectToAction("Account_index");
+                }
+                return View(model);
             }
-            return View(model);
+            catch
+            {
+                return View();
+            }
         }
     }
 }

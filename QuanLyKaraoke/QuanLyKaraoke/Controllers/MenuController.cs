@@ -67,17 +67,26 @@ namespace QuanLyKaraoke.Controllers
         public ActionResult Add_new_menu(Menu model)
         {
             ViewBag.Loai = 0;
-
-            var menu = db.Menus.Where(f => f.Name == model.Name).FirstOrDefault();
-            if (menu != null)
+            try
             {
-                ViewBag.exc = 1;
+                if (ModelState.IsValid)
+                {
+                    var menu = db.Menus.Where(f => f.Name == model.Name).FirstOrDefault();
+                    if (menu != null)
+                    {
+                        ViewBag.exc = 1;
+                        return View(model);
+                    }
+                    db.Menus.Add(model);
+                    db.SaveChanges();
+                    return RedirectToAction("Menu_index");
+                }
                 return View(model);
             }
-
-            db.Menus.Add(model);
-            db.SaveChanges();
-            return RedirectToAction("Menu_index");
+            catch
+            {
+                return View();
+            }
         }
 
         //----------------------------
@@ -104,25 +113,31 @@ namespace QuanLyKaraoke.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-
         }
         [HttpPost]
         public ActionResult EditInfo(Menu model)
         {
             ViewBag.Loai = 1;
-            if (ModelState.IsValid)
+            try
             {
-                //lưu ý bắt lỗi ở đây
-                //lấy data cũ
+                if (ModelState.IsValid)
+                {
+                    //lưu ý bắt lỗi ở đây
+                    //lấy data cũ
 
-                var menu = db.Menus.FirstOrDefault(m => m.Name == model.Name);
-                //gán các thông tin mới vào đối tượng lấy từ CSDL
-                menu.Price = model.Price;
-                menu.Stock = model.Stock;
-                db.SaveChanges();
-                return RedirectToAction("Menu_index");
+                    var menu = db.Menus.FirstOrDefault(m => m.Name == model.Name);
+                    //gán các thông tin mới vào đối tượng lấy từ CSDL
+                    menu.Price = model.Price;
+                    menu.Stock = model.Stock;
+                    db.SaveChanges();
+                    return RedirectToAction("Menu_index");
+                }
+                return View(model);
             }
-            return View(model);
+            catch 
+            {
+                return View(model);
+            }
         }
 
 
