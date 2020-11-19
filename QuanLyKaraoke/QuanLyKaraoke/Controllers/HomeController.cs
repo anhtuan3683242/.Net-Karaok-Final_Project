@@ -223,7 +223,7 @@ namespace QuanLyKaraoke.Controllers
             var booking = db.Bookings
                 .Where(b => b.RoomID == model.RoomID && b.P_Status != 3 &&
                 ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
-                 (b.DateTime < model.EndTime && model.DateTime < b.EndTime)))
+                 (b.DateTime < model.EndTime && model.EndTime < b.EndTime)))
                 .FirstOrDefault();
             if(booking != null)
             {
@@ -286,7 +286,7 @@ namespace QuanLyKaraoke.Controllers
                 var booking = db.Bookings
                     .Where(b => b.RoomID == model.RoomID && b.PayID != model.PayID && b.P_Status != 3 &&
                     ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
-                     (b.DateTime < model.EndTime && model.DateTime < b.EndTime)))
+                     (b.DateTime < model.EndTime && model.EndTime < b.EndTime)))
                     .FirstOrDefault();
                 if(booking != null)
                 {
