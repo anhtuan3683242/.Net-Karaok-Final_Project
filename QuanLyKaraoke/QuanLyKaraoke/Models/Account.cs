@@ -20,7 +20,7 @@ namespace QuanLyKaraoke.Models
         [Required]
         public string UserName { get; set; }
         [Required]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$", ErrorMessage = "Password must be within 8-15 characters, contain at least one uppercase letter, one lower case letter, and one number.")]
         public string PassWord { get; set; }
         [Required]
         public string Role { get; set; }
