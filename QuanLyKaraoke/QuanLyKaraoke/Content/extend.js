@@ -10,6 +10,8 @@ function clockTick() {
         text = (month + "/" + day + "/" + year + ' ' + hours + ':' + minutes + ':' + seconds);
     // here we get the element with the id of "date" and change the content to the text variable we made above
     document.getElementById('date_time').innerHTML = text;
+    $("#min").val(moment().format('DD MMM YYYY'));
+    $("#max").val(moment().add(1, 'days').format('DD MMM YYYY'));
 }
 setInterval(clockTick, 1000);
 
