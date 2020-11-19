@@ -29,7 +29,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Bar Chart Example
 //tao function setDataForBarChart them du leiu dau vao` la` data va` labes
-function setDataForBarChart(labels ,data) {
+function setDataForBarChart(labels ,data, max) {
     var ctx = document.getElementById("myBarChart");
     var myBarChart = new Chart(ctx, {
         type: 'bar',
@@ -70,12 +70,13 @@ function setDataForBarChart(labels ,data) {
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 1000,
+                        max: max,
                         maxTicksLimit: 10,
                         padding: 10,
                         // Number of guests
                         callback: function (value, index, values) {
-                            return number_format(value) + " guests";
+                            //return number_format(value) + " Book";
+                            return value + " Book";
                         }
                     },
                     gridLines: {

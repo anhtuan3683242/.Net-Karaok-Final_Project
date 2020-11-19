@@ -22,18 +22,19 @@ namespace QuanLyKaraoke.Controllers
             //test numguest
 
             //var data = new List<int>() { 500, 320, 132, 346, 567, 621, 712, 811, 818, 902, 985 };
-            var data = new List<int>();
-            
-            for (int i = 0; i < 12; i++)
-            {
-                data.Add(bookingDao.GetNumGuest(i+1));
-            }
+            //var data = new List<int>();
+
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    data.Add(bookingDao.GetNumGuest(i+1));
+            //}
 
             
             var doanhthu = new BarChart()
             {
                 Labels = labels,
-                Data = data 
+                Data = bookingDao.GetNumBook(),
+                max = bookingDao.GetMax(),
             };
 
             var model = new RevenueModel()
