@@ -18,31 +18,58 @@ namespace QuanLyKaraoke.Controllers
 
             //var labels = new List<string>() { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Sep", "Oct", "Nov", "Dec" };
             var labels = new List<string>() { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec" };
+            var labels1 = new List<string>() { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
+            var labelsPie = new List<string>() { "Standard", "VIP", "Luxury" };
             //test numguest
 
             //var data = new List<int>() { 500, 320, 132, 346, 567, 621, 712, 811, 818, 902, 985 };
-            //var data = new List<int>();
 
-            //for (int i = 0; i < 12; i++)
-            //{
-            //    data.Add(bookingDao.GetNumGuest(i+1));
-            //}
+            var data = new List<int>();
+            var data1 = new List<int>();
 
+            var dataPie = new List<int>();
+
+
+            for (int x = 0; x < 12; x++)
+            {
+                data1.Add(revenueDao.GetTotal(x + 1));
+            }
             
             var doanhthu = new BarChart()
             {
                 Labels = labels,
+
                 Data = bookingDao.GetNumBook(),
                 max = bookingDao.GetMax(),
+
+                
+            };
+
+            var totaldt = new LineChart()
+            {
+                Labels1 = labels1,
+                Data1 = data1
+            };
+
+            var typeRoom = new PieChart()
+            {
+                LabelsPie = labelsPie,
+                DataPie = dataPie
+
             };
 
             var model = new RevenueModel()
             {
-                DoanhThuChart = doanhthu
+                DoanhThuChart = doanhthu,
+                TotalDT = totaldt,
+                //TypeRoom = typeRoom - Pie Chảrt
             };
 
+
             return View(model);
+
         }
+
     }
 }

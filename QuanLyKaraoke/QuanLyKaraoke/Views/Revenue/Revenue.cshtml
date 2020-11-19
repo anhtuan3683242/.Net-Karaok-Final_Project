@@ -25,30 +25,28 @@
             <!-- Area Chart -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Area Chart: Doanh thu qua từng tháng</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Profit per month</h6>
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                        <canvas id="myAreaChart" value="5000"> 5000</canvas>
                     </div>
                     <hr>
-                    Styling for the area chart can be found in the
-                    <code>/js/demo/chart-area-demo.js</code> file.
+
                 </div>
             </div>
 
             <!-- Bar Chart -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Number of guests through each month</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Number of Booking each month</h6>
                 </div>
                 <div class="card-body">
                     <div class="chart-bar">
                         <canvas id="myBarChart" value="5000"> 5000</canvas>
                     </div>
                     <hr>
-                    Styling for the bar chart can be found in the
-                    <code>/js/demo/chart-bar-demo.js</code> file.
+
                 </div>
             </div>
 
@@ -90,6 +88,16 @@
             console.log(dataJson.DoanhThuChart.Data);
             //truyen du lieu vao` function(trc tien phai tao. 1 funciton va` them du lieu dau` vao`)
             setDataForBarChart(dataJson.DoanhThuChart.Labels, dataJson.DoanhThuChart.Data, dataJson.DoanhThuChart.max);
+        });
+
+        $(document).ready(function () {
+            console.log(dataJson.TotalDT.Data);
+            setDataForLineChart(dataJson.TotalDT.Labels1, dataJson.TotalDT.Data1);
+        });
+
+        $(document).ready(function () {
+            console.log(dataJson.TypeRoom.Data);
+            setDataForPieChart(dataJson.TypeRoom.LabelsPie, dataJson.TypeRoom.DataPie);
         });
     </script>
 }
