@@ -54,11 +54,11 @@
                     }
                     @if (test.P_Status == 2)
                     {
-                        <a href="/Home/Bill/@test.PayID" id="" class="btn btn-outline-success" style="width:146px;"> Check OUT  </a>
+                        <a href="#" id="" class="btn btn-outline-success checkout" style="width:146px;" onclick="checkout(@test.PayID);"> Check OUT  </a>
                     }
                     @if (test.P_Status == 1)
                     {
-                        <a href="#" id="checkout" class="btn btn-outline-success checkout" style="width:146px;" data="@test.PayID"> Check IN  </a>
+                        <a href="#" id="checkout" class="btn btn-outline-success checkin" style="width:146px;" data="@test.PayID"> Check IN  </a>
                     }
 
                     | @Html.ActionLink("Edit", "EditInfo", new { id = test.PayID }, new { @class = "btn btn-outline-warning" }) |
@@ -82,10 +82,16 @@
 }
 
 <script type="text/javascript">
+    function checkout(id) {
+        window.open('/Home/Bill/' + id); return false;
+    }
+</script>
+
+<script type="text/javascript">
 
     //Script duoc chuyen het vao file ~Conten/extend.js
     $(document).ready(function () {
-        $('.checkout').click(function (e) {
+        $('.checkin').click(function (e) {
             //bỏ tác dụng bấm mặc định
             e.preventDefault();
             var atag = $(this);

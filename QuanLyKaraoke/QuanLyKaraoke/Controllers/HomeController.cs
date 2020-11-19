@@ -154,17 +154,20 @@ namespace QuanLyKaraoke.Controllers
 
             if (book == null)
             {
-                return Json(new { isvalid = false, msg = "Không tìm thấy phòng này" });
+                return Json(new { isvalid = false, msg = "This room cannot be found" });
             }
-
+            if (book.DateTime >= DateTime.Now)
+            {
+                return Json(new { isvalid = false, msg = "Not allowed to check in. It's not time yet" });
+            }
             if (room.Status == 3)
             {
-                return Json(new { isvalid = false, msg = "Bạn đã nhận phòng rồi" });
+                return Json(new { isvalid = false, msg = "You have already checked in" });
             }
             room.Status = 3;
             book.P_Status = 2;
             db.SaveChanges();
-            return Json(new { isvalid = true, msg = "Đã nhận phòng thành công" });
+            return Json(new { isvalid = true, msg = "Check-in was successful" });
         }
         //------------Add
         [HttpGet]
