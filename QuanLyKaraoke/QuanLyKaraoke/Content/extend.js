@@ -1,4 +1,30 @@
-﻿
+﻿//Default time for filter
+$(document).ready(function () {
+    //Set date time field
+    $("#min").val(moment().format('DD MMM YYYY'));
+    $("#max").val(moment().add(2, 'days').format('DD MMM YYYY'));
+    $("#test").val(moment().format('YYYY/MM/DD H:mm a'));
+    var StartTime = moment().format('YYYY/MM/DD H:mm a');
+    var EndTime = moment().add(1, 'hours').format('YYYY/MM/DD H:mm a');
+    
+    $('.Starttime').datetimepicker({
+        step: 30,
+        value: StartTime
+    });
+    $('.StarttimeEdit').datetimepicker({
+        step: 30,
+    });
+    $('.Endtime').datetimepicker({
+        step: 30,
+        value: EndTime
+    });
+    $('.EndtimeEdit').datetimepicker({
+        step: 30,
+    });
+
+    
+});
+//Time for NAV Bar
 function clockTick() {
     var currentTime = new Date(),
         month = currentTime.getMonth() + 1,
@@ -12,27 +38,6 @@ function clockTick() {
     document.getElementById('date_time').innerHTML = text;
 }
 setInterval(clockTick, 1000);
-
-
-//Set date time field
-var today = new Date();
-
-//set curr date
-var dd = String(today.getDate()).padStart(2, '0');
-
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-var hh = today.getHours();
-var mn = today.getMinutes();
-
-//currdate
-today = yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + mn;
-$('.currdate').datetimepicker({
-    step: 30,
-    value: today
-});
-
-
 
 //Delete booking function
 $(document).ready(function () {
@@ -62,9 +67,6 @@ $(document).ready(function () {
     });
 });
 
-//delete room
-
-
 //Search function
 $(document).ready(function () {
     $("#myInput").on("keyup", function () {
@@ -76,7 +78,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    console.log('adada');
         $.fn.dataTableExt.afnFiltering.push(
             function (oSettings, aData, iDataIndex) {
                 var cellDate = moment(aData[0]);

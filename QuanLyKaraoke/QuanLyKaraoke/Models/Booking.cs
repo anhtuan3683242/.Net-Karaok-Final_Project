@@ -17,6 +17,7 @@ namespace QuanLyKaraoke.Models
         public int Amount_Cus { get; set; }
         public int P_Status { get; set; }// 1: wait for payment; 2: payment success; 3: was cancel
         public DateTime DateTime { get; set; }
+        public DateTime EndTime { get; set; }
         public float Duration { get; set; }
         public int Total { get; set; }
         //Cac lien ket

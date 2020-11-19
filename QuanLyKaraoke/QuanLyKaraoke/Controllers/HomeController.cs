@@ -178,6 +178,7 @@ namespace QuanLyKaraoke.Controllers
                 return Json(new { isvalid = false, msg = "Bạn đã nhận phòng rồi" });
             }
             room.Status = 3;
+            book.P_Status = 2;
             db.SaveChanges();
             return Json(new { isvalid = true, msg = "Đã nhận phòng thành công" });
         }
@@ -189,7 +190,8 @@ namespace QuanLyKaraoke.Controllers
             {
                 ViewBag.Loai = 0;
 
-                var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+                //var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+                var RoomList = db.Rooms.ToList();
                 ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
                 return View(new Booking());
             }
@@ -211,10 +213,24 @@ namespace QuanLyKaraoke.Controllers
             model.Total = 0;
             model.P_Status = 1;
             model.Duration = 0;
+            //Dung` de khoi tao lai Roomlist neu gap loi
+            var RoomList = db.Rooms.ToList();
+                ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
 
-            var room = db.Rooms.Where(r => r.RoomID == model.RoomID).FirstOrDefault();
-            room.Status = 2;
+            //var room = db.Rooms.Where(r => r.RoomID == model.RoomID).FirstOrDefault();
+            //room.Status = 2;
 
+            var booking = db.Bookings
+                .Where(b => b.RoomID == model.RoomID && b.P_Status != 3 &&
+                ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
+                 (b.DateTime < model.EndTime && model.DateTime < b.EndTime)))
+                .FirstOrDefault();
+            if(booking != null)
+            {
+                TempData["ErrorMessage"] = "This time has been booked. Please choose another time";
+                return View(model);
+            }
+            //Khoi tao gio hang` moi
             Order order = new Order();
             order.O_total = 0;
             var entity = db.Orders.Add(order);
@@ -235,7 +251,8 @@ namespace QuanLyKaraoke.Controllers
             {
                 ViewBag.Loai = 1;
 
-                var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+                //var RoomList = db.Rooms.Where(r => r.Status == 1).ToList();
+                var RoomList = db.Rooms.ToList();
                 ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
 
                 var booking = db.Bookings.FirstOrDefault(b => b.PayID == id);
@@ -262,9 +279,21 @@ namespace QuanLyKaraoke.Controllers
             ViewBag.Loai = 1;
             if (ModelState.IsValid)
             {
-                //lưu ý bắt lỗi ở đây
-                //lấy data cũ
-                
+                //khoi tao lai roomlist neu gap loi
+                var RoomList = db.Rooms.ToList();
+                ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
+                //kiem tra xem h dat co trung voi booking nao` ko
+                var booking = db.Bookings
+                    .Where(b => b.RoomID == model.RoomID && b.PayID != model.PayID && b.P_Status != 3 &&
+                    ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
+                     (b.DateTime < model.EndTime && model.DateTime < b.EndTime)))
+                    .FirstOrDefault();
+                if(booking != null)
+                {
+                    TempData["ErrorMessage"] = "This time has been booked. Please choose another time";
+                    return RedirectToAction("EditInfo", new { id = model.PayID });
+                }
+
                 var book = db.Bookings.FirstOrDefault(b => b.PayID == model.PayID);
                 //gán các thông tin mới vào đối tượng lấy từ CSDL
                 book.Name_Cus = model.Name_Cus;
@@ -272,6 +301,7 @@ namespace QuanLyKaraoke.Controllers
                 book.Amount_Cus = model.Amount_Cus;
                 book.RoomID = model.RoomID == null ? book.RoomID : model.RoomID;
                 book.DateTime = model.DateTime;
+                book.EndTime = model.EndTime;
                 db.SaveChanges();
                 return RedirectToAction("Admin_index");
                 
@@ -380,7 +410,8 @@ namespace QuanLyKaraoke.Controllers
             }
             booking.Duration = model.Booking.Duration;
             booking.Total = model.Booking.Total;
-            booking.P_Status = 2;
+            booking.EndTime = model.Booking.EndTime;
+            booking.P_Status = 3;
 
             var room = db.Rooms.Where(r => r.RoomID == model.Booking.Room.RoomID).FirstOrDefault();
             room.Status = 1;
