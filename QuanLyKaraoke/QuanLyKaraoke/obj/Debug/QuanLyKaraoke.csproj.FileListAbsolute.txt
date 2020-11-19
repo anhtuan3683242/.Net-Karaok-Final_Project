@@ -612,7 +612,6 @@ D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
 D:\Finalproject\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
 C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\Rotativa.dll
-C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.initial.resources
 C:\Users\Admin\Desktop\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\QuanLyKaraoke.dll.config
 C:\Users\Admin\Desktop\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\QuanLyKaraoke.dll
 C:\Users\Admin\Desktop\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\bin\QuanLyKaraoke.pdb
@@ -794,3 +793,4 @@ E:\IT\Projectt CNPM\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.dll
 E:\IT\Projectt CNPM\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.pdb
 E:\IT\Projectt CNPM\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.init.resources
 E:\IT\Projectt CNPM\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.csproj.GenerateResource.cache
+C:\Users\Cong Pham\Desktop\Learn\C#\Final\.Net-Karaok-Final_Project\QuanLyKaraoke\QuanLyKaraoke\obj\Debug\QuanLyKaraoke.Migrations.init.resources

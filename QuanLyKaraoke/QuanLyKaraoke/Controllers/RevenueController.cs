@@ -13,7 +13,7 @@ namespace QuanLyKaraoke.Controllers
         // GET: Revenue
         public ActionResult Revenue()
         {
-            var bookingDao = new BookingDAO();
+
             var revenueDao = new RevenueDao();
 
             //var labels = new List<string>() { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Sep", "Oct", "Nov", "Dec" };
@@ -40,8 +40,8 @@ namespace QuanLyKaraoke.Controllers
             {
                 Labels = labels,
 
-                Data = bookingDao.GetNumBook(),
-                max = bookingDao.GetMax(),
+                Data = revenueDao.GetNumBook(),
+                max = revenueDao.GetMax(),
 
                 
             };

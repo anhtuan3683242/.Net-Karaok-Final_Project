@@ -15,30 +15,7 @@ namespace QuanLyKaraoke.Models
             return db.Bookings.OrderBy(b => b.PayID).ToList();
         }
 
-        public int GetNumGuest(int month)
-        {
-            return db.Bookings.OrderBy(d=>d.DateTime).Where(d => d.DateTime.Month == month).ToList().Count;
-
-        }
-        public List<int> GetNumBook()
-        {
-            var list = new List<int>();
-            for (int i = 1; i <= 12; i++)
-            {
-                list.Add(db.Bookings.OrderBy(d => d.DateTime).Where(d => d.DateTime.Month == i).ToList().Count);
-            }
-            return list;
-        }
-
-        public int GetMax()
-        {
-            var list = new List<int>();
-            for (int i = 1; i <= 12; i++)
-            {
-                list.Add(db.Bookings.OrderBy(d => d.DateTime).Where(d => d.DateTime.Month == i).ToList().Count);
-            }
-            return list.Max();
-        }
+        
 
     }
 }
