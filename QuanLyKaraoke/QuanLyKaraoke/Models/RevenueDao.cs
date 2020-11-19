@@ -12,14 +12,18 @@ namespace QuanLyKaraoke.Models
 
         public int GetTotal(int month)
         {
-            var list = db.Bookings.OrderBy(d => d.DateTime).Where(d => d.DateTime.Month == month).ToList().Sum(item => item.Total);
-            return list;
+            
+            return db.Bookings.OrderBy(d => d.DateTime).Where(d => d.DateTime.Month == month).ToList().Sum(item => item.Total);
         }
 
-        public int GetTRoom(int month)
+        public List<int> GetTRoom()
         {
             // chinh dieu kien de loc RoomID
-            return db.Bookings.OrderBy(d => d.DateTime).Where(d => d.DateTime.Month == month).ToList().Sum(item => item.Total);
+            var std = db.Bookings.OrderBy(i => i.RoomID).Where(r => r.Room.RoomType == "Standard").ToList().Count;
+            var vip = db.Bookings.OrderBy(i => i.RoomID).Where(r => r.Room.RoomType == "Vip").ToList().Count;
+            var lux = db.Bookings.OrderBy(i => i.RoomID).Where(r => r.Room.RoomType == "Luxury").ToList().Count;
+            List<int> list = new List<int>() { std, vip, lux };
+            return list;
         }
         public int GetNumGuest(int month)
         {
