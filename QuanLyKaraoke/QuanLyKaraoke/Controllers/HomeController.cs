@@ -27,7 +27,14 @@ namespace QuanLyKaraoke.Controllers
         }
         public ActionResult About()
         {
-            return View();
+            if (Session["S_ID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpGet]
@@ -39,7 +46,19 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Revenue()
         {
-            return View();
+            if (Session["S_ID"] != null && Session["Role"].ToString() != "Staff")
+            {
+                return View(new AccountDAO().GetList());
+            }
+            else if (Session["S_ID"] != null)
+            {
+                TempData["ErrorMessage"] = "You are not authorized to access this page";
+                return RedirectToAction("Admin_index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
 
@@ -98,7 +117,7 @@ namespace QuanLyKaraoke.Controllers
 
         public ActionResult Admin_index()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
+            if (Session["S_ID"] != null)
             {
                 return View(new BookingDAO().GetList());
             }
@@ -174,6 +193,11 @@ namespace QuanLyKaraoke.Controllers
                 ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
                 return View(new Booking());
             }
+            else if (Session["S_ID"] != null)
+            {
+                TempData["ErrorMessage"] = "You are not authorized to access this page";
+                return RedirectToAction("Admin_index", "Home");
+            }
             else
             {
                 return RedirectToAction("Login", "Home");
@@ -221,6 +245,11 @@ namespace QuanLyKaraoke.Controllers
                 }
                 return View("Add_new_booking", booking);
             }
+            else if (Session["S_ID"] != null)
+            {
+                TempData["ErrorMessage"] = "You are not authorized to access this page";
+                return RedirectToAction("Admin_index", "Home");
+            }
             else
             {
                 return RedirectToAction("Login", "Home");
@@ -266,6 +295,11 @@ namespace QuanLyKaraoke.Controllers
                 viewmodel.Order = new OrderDAO().GetOrderByID(id);
 
                 return View("Order", viewmodel);
+            }
+            else if (Session["S_ID"] != null)
+            {
+                TempData["ErrorMessage"] = "You are not authorized to access this page";
+                return RedirectToAction("Admin_index", "Home");
             }
             else
             {
