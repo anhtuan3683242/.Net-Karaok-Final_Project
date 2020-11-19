@@ -55,7 +55,7 @@ namespace QuanLyKaraoke.Controllers
             var typeRoom = new PieChart()
             {
                 LabelsPie = labelsPie,
-                DataPie = dataPie
+                DataPie = revenueDao.GetTRoom(),
 
             };
 
@@ -63,7 +63,7 @@ namespace QuanLyKaraoke.Controllers
             {
                 DoanhThuChart = doanhthu,
                 TotalDT = totaldt,
-                //TypeRoom = typeRoom - Pie Chảrt
+                TypeRoom = typeRoom
             };
 
 
