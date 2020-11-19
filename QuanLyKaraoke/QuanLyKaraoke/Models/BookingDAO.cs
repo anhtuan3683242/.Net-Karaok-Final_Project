@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Syncfusion.EJ2.Navigations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebGrease;
 
 namespace QuanLyKaraoke.Models
 {
@@ -12,6 +14,8 @@ namespace QuanLyKaraoke.Models
         {
             return db.Bookings.OrderBy(b => b.PayID).ToList();
         }
+
+        
 
     }
 }

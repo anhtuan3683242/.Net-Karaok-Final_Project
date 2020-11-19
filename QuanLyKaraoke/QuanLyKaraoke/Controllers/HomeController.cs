@@ -44,22 +44,6 @@ namespace QuanLyKaraoke.Controllers
         }
 
 
-        public ActionResult Revenue()
-        {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "Staff")
-            {
-                return View(new AccountDAO().GetList());
-            }
-            else if (Session["S_ID"] != null)
-            {
-                TempData["ErrorMessage"] = "You are not authorized to access this page";
-                return RedirectToAction("Admin_index", "Home");
-            }
-            else
-            {
-                return RedirectToAction("Login", "Home");
-            }
-        }
 
 
         [HttpPost]

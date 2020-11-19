@@ -7,17 +7,13 @@ namespace QuanLyKaraoke.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-<<<<<<< HEAD:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011160546293_initial.Designer.cs
-            get { return "202011160546293_initial"; }
-=======
-            get { return "202011160722097_init"; }
->>>>>>> Cong_branch:QuanLyKaraoke/QuanLyKaraoke/Migrations/202011160722097_init.Designer.cs
+            get { return "202011191153159_init"; }
         }
         
         string IMigrationMetadata.Source

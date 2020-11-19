@@ -143,6 +143,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\RevenueController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,6 +165,8 @@
     <Compile Include="Models\Order_Detail.cs" />
     <Compile Include="Models\Order_DetailDAO.cs" />
     <Compile Include="Models\QuanLyContext.cs" />
+    <Compile Include="Models\RevenueDao.cs" />
+    <Compile Include="Models\RevenueModel.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomDAO.cs" />
     <Compile Include="Models\Viewmodel.cs" />
@@ -2113,10 +2116,11 @@
     <Content Include="Views\Home\Bill.cshtml" />
     <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
-    <Content Include="Views\Home\Revenue.cshtml" />
+    <Content Include="Views\Revenue\Revenue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
