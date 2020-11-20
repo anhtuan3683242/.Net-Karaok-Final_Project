@@ -93,6 +93,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
+
             if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
             {
                 ViewBag.Loai = 1;
@@ -133,10 +134,11 @@ namespace QuanLyKaraoke.Controllers
                     return RedirectToAction("Menu_index");
                 }
                 return View(model);
+                //return RedirectToAction("EditInfo", new { id = model.Food_ID });
             }
             catch 
             {
-                return View(model);
+                return View();
             }
         }
 

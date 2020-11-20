@@ -22,8 +22,8 @@
 
 }
 @using (Html.BeginForm())
-{ 
-    @Html.AntiForgeryToken()
+{
+
     @Html.ValidationSummary(true)
     <table class="table" id="tab2">
         <tbody>
@@ -37,7 +37,7 @@
                     }
                     else
                     {
-                        @Html.TextBoxFor(model => model.Food_ID, new { @class = "form-control", @type="hidden", @value= "@Model.Food_ID" })
+                        @Html.TextBoxFor(model => model.Food_ID, new { @class = "form-control", @type = "hidden" })
                         @Html.HiddenFor(model => model.Name);
                         @Model.Name;
                     }
