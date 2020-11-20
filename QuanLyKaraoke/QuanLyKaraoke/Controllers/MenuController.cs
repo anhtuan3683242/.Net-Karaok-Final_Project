@@ -115,6 +115,7 @@ namespace QuanLyKaraoke.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditInfo(Menu model)
         {
             ViewBag.Loai = 1;
