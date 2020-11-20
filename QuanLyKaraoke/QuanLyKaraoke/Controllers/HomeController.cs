@@ -73,7 +73,6 @@ namespace QuanLyKaraoke.Controllers
             return View();
         }
         //Logout
-        [HttpPost]
         public ActionResult Logout()
         {
             Session.Clear();//remove session
