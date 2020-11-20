@@ -13,11 +13,14 @@
 <h1>@ViewBag.Title</h1>
 <form id="form_post" action="#" method="post">
     <table class="table" id="tab2">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
         <tbody>
             <tr>
                 <td><p> Customer Name</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.Name_Cus, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name_Cus, "", new { @class = "text-danger" })
                 </td>
 
                 <td style="font-weight: bold;"> <label for="Room">Choose Room </label></td>
@@ -25,10 +28,12 @@
                     @if (ViewBag.loai == 0)
                     {
                         @Html.DropDownListFor(model => model.RoomID, ViewBag.RoomList as SelectList, "---Select Room---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RoomID, "", new { @class = "text-danger" })
                     }
                     else
                     {
                         @Html.DropDownListFor(model => model.RoomID, ViewBag.RoomList as SelectList, Model.Room.RoomID, new { @class = "form-control", value = Model.Room.RoomID })
+                        @Html.ValidationMessageFor(model => model.RoomID, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.PayID)
                     }
 
@@ -38,6 +43,7 @@
                 <td><p> Customer Phone</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.Phone_Cus, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Phone_Cus, "", new { @class = "text-danger" })
                 </td>
 
                 <td><p>Date time booking</p></td>
@@ -45,10 +51,12 @@
                     @if (ViewBag.loai == 0)
                     {
                         @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control Starttime" } })
+                        @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
                     }
                     else
                     {
                         @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control StarttimeEdit" } })
+                        @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
                     }
                 </td>
             </tr>
@@ -56,16 +64,19 @@
                 <td><p>Customers Amount</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.Amount_Cus, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Amount_Cus, "", new { @class = "text-danger" })
                 </td>
                 <td><p>End Time</p></td>
                 <td>
                     @if (ViewBag.loai == 0)
                     {
                         @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control Endtime" } })
+                        @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
                     }
                     else
                     {
                         @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control EndtimeEdit" } })
+                        @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
                     }
                 </td>
             </tr>

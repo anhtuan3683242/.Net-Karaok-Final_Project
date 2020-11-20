@@ -12,8 +12,11 @@ namespace QuanLyKaraoke.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Food_ID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public int Price { get; set; }
+        [Required]
         public int Stock { get; set; }
         // cac lien ket
         

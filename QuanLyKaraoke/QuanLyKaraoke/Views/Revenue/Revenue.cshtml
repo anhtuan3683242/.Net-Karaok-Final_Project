@@ -8,14 +8,8 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Charts</h1>
-    <p class="mb-4">
-        Chart.js is a third party plugin that is used to generate the charts in this theme.
-        The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">
-            official Chart.js
-            documentation
-        </a>.
-    </p>
+    <h1 class="h3 mb-2 text-gray-800">Revenue Charts</h1>
+    <input type="number" class="form-inline" value="2020" />
 
     <!-- Content Row -->
     <div class="row">
@@ -29,13 +23,13 @@
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="myAreaChart" value="5000"> 5000</canvas>
+                        <canvas id="myAreaChart" value="5000" height="200"> 5000</canvas>
                     </div>
                     <hr>
 
                 </div>
             </div>
-
+            <br />
             <!-- Bar Chart -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -43,7 +37,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart-bar">
-                        <canvas id="myBarChart" value="5000"> 5000</canvas>
+                        <canvas id="myBarChart" value="5000" height="250"> 5000</canvas>
                     </div>
                     <hr>
 
@@ -57,7 +51,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart: Thống kê loại phòng được đặt (Dark blue: Standard, Green: VIP, Light Blue: Luxury</h6>
+                    <h6 class="m-0 font-weight-bold text-primary"> Rate of room type (Dark blue: Standard, Green: VIP, Light Blue: Luxury</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -65,8 +59,6 @@
                         <canvas id="myPieChart"></canvas>
                     </div>
                     <hr>
-                    Styling for the donut chart can be found in the
-                    <code>/js/demo/chart-pie-demo.js</code> file.
                 </div>
             </div>
         </div>

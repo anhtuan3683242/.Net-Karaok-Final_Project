@@ -67,33 +67,45 @@ namespace QuanLyKaraoke.Controllers
         [HttpPost]
         public ActionResult Add_new_room(Room model)
         {
-            ViewBag.loai = 0;
-            var room = db.Rooms.FirstOrDefault(r => r.RoomID == model.RoomID);
-
-            if (room != null)
+            try
             {
-                ViewBag.exc = 1;
+                if (ModelState.IsValid)
+                {
+                    ViewBag.loai = 0;
+                    var room = db.Rooms.FirstOrDefault(r => r.RoomID == model.RoomID);
+
+                    if (room != null)
+                    {
+                        ViewBag.exc = 1;
+                        return View(model);
+                    }
+
+                    ViewBag.exc = 0;
+                    if (model.RoomType == "Standard")
+                    {
+                        model.R_Price = 100000;
+                    }
+                    if (model.RoomType == "Vip")
+                    {
+                        model.R_Price = 150000;
+                    }
+                    if (model.RoomType == "Luxury")
+                    {
+                        model.R_Price = 200000;
+                    }
+                    model.Status = 1;
+                    db.Rooms.Add(model);
+                    db.SaveChanges();
+                    return RedirectToAction("Room_Index");
+                }
+                ViewBag.Loai = 0;
                 return View(model);
             }
-
-            ViewBag.exc = 0;
-            if (model.RoomType == "Standard")
+            catch
             {
-                model.R_Price = 100000;
+                ViewBag.Loai = 0;
+                return View();
             }
-            if (model.RoomType == "Vip")
-            {
-                model.R_Price = 150000;
-            }
-            if (model.RoomType == "Luxury")
-            {
-                model.R_Price = 200000;
-            }
-            model.Status = 1;
-            db.Rooms.Add(model);
-            db.SaveChanges();
-            return RedirectToAction("Room_Index");
         }
-
     }
 }

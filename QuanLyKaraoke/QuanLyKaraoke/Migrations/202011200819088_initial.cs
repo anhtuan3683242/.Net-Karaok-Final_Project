@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -16,7 +16,7 @@
                         Phone = c.String(nullable: false),
                         UserName = c.String(nullable: false),
                         PassWord = c.String(nullable: false),
-                        Role = c.String(),
+                        Role = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.S_ID);
             
@@ -25,11 +25,12 @@
                 c => new
                     {
                         PayID = c.Int(nullable: false, identity: true),
-                        Name_Cus = c.String(),
-                        Phone_Cus = c.String(),
+                        Name_Cus = c.String(nullable: false),
+                        Phone_Cus = c.String(nullable: false),
                         Amount_Cus = c.Int(nullable: false),
                         P_Status = c.Int(nullable: false),
                         DateTime = c.DateTime(nullable: false),
+                        EndTime = c.DateTime(nullable: false),
                         Duration = c.Single(nullable: false),
                         Total = c.Int(nullable: false),
                         Order_ID = c.Int(nullable: false),
@@ -70,7 +71,7 @@
                 c => new
                     {
                         Food_ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Price = c.Int(nullable: false),
                         Stock = c.Int(nullable: false),
                     })
@@ -81,7 +82,7 @@
                 c => new
                     {
                         RoomID = c.String(nullable: false, maxLength: 128),
-                        RoomType = c.String(),
+                        RoomType = c.String(nullable: false),
                         R_Price = c.Int(nullable: false),
                         Status = c.Int(nullable: false),
                     })

@@ -20,23 +20,24 @@
         <tbody>
             @foreach (var Foods in Model)
             {
-                <tr>
-                    <th scope="row">@Foods.Food_ID</th>
-                    <td>@Foods.Name</td>
-                    <td>@Foods.Price VNĐ</td>
-                    @if (Foods.Stock == 0)
-                    {
-                        <td style="color:red"> Out of stock</td>
-                    }
-                    else { 
-                        <td style="color:green">@Foods.Stock</td>
-                    }
-                    
+            <tr>
+                <th scope="row">@Foods.Food_ID</th>
+                <td>@Foods.Name</td>
+                <td>@(Convert.ToDecimal(Foods.Price).ToString("#,##0")) VNĐ</td>
+                @if (Foods.Stock == 0)
+                {
+                    <td style="color:red"> Out of stock</td>
+                }
+                else
+                {
+                <td style="color:green">@(Convert.ToDecimal(Foods.Stock).ToString("#,##0"))</td>
+                }
+
                 <td>
                     @Html.ActionLink("Edit", "EditInfo", new { id = Foods.Food_ID }, new { @class = "btn btn-outline-warning" }) |
                     <a href="#" class="btn btn-outline-danger btnDelm" data="@Foods.Food_ID">Delete</a>
                 </td>
-                </tr>
+            </tr>
             }
         </tbody>
     </table>

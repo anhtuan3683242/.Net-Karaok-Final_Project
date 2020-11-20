@@ -14,6 +14,7 @@ namespace QuanLyKaraoke.Controllers
     public class HomeController : Controller
     {
         public QuanLyContext db = new QuanLyContext();
+        [HttpGet]
         public ActionResult Index()
         {
             if (Session["S_ID"] != null)
@@ -25,6 +26,7 @@ namespace QuanLyKaraoke.Controllers
                 return RedirectToAction("Login");
             }
         }
+        [HttpGet]
         public ActionResult About()
         {
             if (Session["S_ID"] != null)
@@ -42,9 +44,6 @@ namespace QuanLyKaraoke.Controllers
         {
             return View();
         }
-
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -74,6 +73,7 @@ namespace QuanLyKaraoke.Controllers
             return View();
         }
         //Logout
+        [HttpPost]
         public ActionResult Logout()
         {
             Session.Clear();//remove session
@@ -84,7 +84,7 @@ namespace QuanLyKaraoke.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -98,7 +98,7 @@ namespace QuanLyKaraoke.Controllers
             }
 
         }
-
+        [HttpGet]
         public ActionResult Admin_index()
         {
             if (Session["S_ID"] != null)
@@ -197,39 +197,49 @@ namespace QuanLyKaraoke.Controllers
         public ActionResult Add_new_booking(Booking model)
         {
             ViewBag.Loai = 0;
-            model.Total = 0;
-            model.P_Status = 1;
-            model.Duration = 0;
-            //Dung` de khoi tao lai Roomlist neu gap loi
             var RoomList = db.Rooms.ToList();
-                ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
-
-            //var room = db.Rooms.Where(r => r.RoomID == model.RoomID).FirstOrDefault();
-            //room.Status = 2;
-
-            var booking = db.Bookings
-                .Where(b => b.RoomID == model.RoomID && b.P_Status != 3 &&
-                ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
-                 (b.DateTime < model.EndTime && model.EndTime < b.EndTime)))
-                .FirstOrDefault();
-            if(booking != null)
+            ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
+            try
             {
-                TempData["ErrorMessage"] = "This time has been booked. Please choose another time";
+                if (ModelState.IsValid)
+                {
+                    model.Total = 0;
+                    model.P_Status = 1;
+                    model.Duration = 0;
+                    //Dung` de khoi tao lai Roomlist neu gap loi
+
+
+                    //var room = db.Rooms.Where(r => r.RoomID == model.RoomID).FirstOrDefault();
+                    //room.Status = 2;
+
+                    var booking = db.Bookings
+                        .Where(b => b.RoomID == model.RoomID && b.P_Status != 3 &&
+                        ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
+                         (b.DateTime < model.EndTime && model.EndTime < b.EndTime)))
+                        .FirstOrDefault();
+                    if (booking != null)
+                    {
+                        TempData["ErrorMessage"] = "This time has been booked. Please choose another time";
+                        return View(model);
+                    }
+                    //Khoi tao gio hang` moi
+                    Order order = new Order();
+                    order.O_total = 0;
+                    var entity = db.Orders.Add(order);
+                    model.Order_ID = entity.Order_ID;
+
+                    db.Bookings.Add(model);
+                    db.SaveChanges();
+                    return RedirectToAction("Admin_index");
+                }
                 return View(model);
             }
-            //Khoi tao gio hang` moi
-            Order order = new Order();
-            order.O_total = 0;
-            var entity = db.Orders.Add(order);
-            model.Order_ID = entity.Order_ID;
-
-            db.Bookings.Add(model);
-            db.SaveChanges();
-            return RedirectToAction("Admin_index");
+            catch
+            {
+                return View();
+            }
         }
-
-
-
+        
         //-------------Edit
         [HttpGet]
         public ActionResult EditInfo(int id)
@@ -264,36 +274,43 @@ namespace QuanLyKaraoke.Controllers
         public ActionResult EditInfo(Booking model)
         {
             ViewBag.Loai = 1;
-            if (ModelState.IsValid)
+            try
             {
-                //khoi tao lai roomlist neu gap loi
-                var RoomList = db.Rooms.ToList();
-                ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
-                //kiem tra xem h dat co trung voi booking nao` ko
-                var booking = db.Bookings
-                    .Where(b => b.RoomID == model.RoomID && b.PayID != model.PayID && b.P_Status != 3 &&
-                    ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
-                     (b.DateTime < model.EndTime && model.EndTime < b.EndTime)))
-                    .FirstOrDefault();
-                if(booking != null)
+                if (ModelState.IsValid)
                 {
-                    TempData["ErrorMessage"] = "This time has been booked. Please choose another time";
-                    return RedirectToAction("EditInfo", new { id = model.PayID });
-                }
+                    //khoi tao lai roomlist neu gap loi
+                    var RoomList = db.Rooms.ToList();
+                    ViewBag.RoomList = new SelectList(RoomList, "RoomID", "RoomID");
+                    //kiem tra xem h dat co trung voi booking nao` ko
+                    var booking = db.Bookings
+                        .Where(b => b.RoomID == model.RoomID && b.PayID != model.PayID && b.P_Status != 3 &&
+                        ((b.DateTime < model.DateTime && model.DateTime < b.EndTime) ||
+                         (b.DateTime < model.EndTime && model.EndTime < b.EndTime)))
+                        .FirstOrDefault();
+                    if (booking != null)
+                    {
+                        TempData["ErrorMessage"] = "This time has been booked. Please choose another time";
+                        return RedirectToAction("EditInfo", new { id = model.PayID });
+                    }
 
-                var book = db.Bookings.FirstOrDefault(b => b.PayID == model.PayID);
-                //gán các thông tin mới vào đối tượng lấy từ CSDL
-                book.Name_Cus = model.Name_Cus;
-                book.Phone_Cus = model.Phone_Cus;
-                book.Amount_Cus = model.Amount_Cus;
-                book.RoomID = model.RoomID == null ? book.RoomID : model.RoomID;
-                book.DateTime = model.DateTime;
-                book.EndTime = model.EndTime;
-                db.SaveChanges();
-                return RedirectToAction("Admin_index");
-                
+                    var book = db.Bookings.FirstOrDefault(b => b.PayID == model.PayID);
+                    //gán các thông tin mới vào đối tượng lấy từ CSDL
+                    book.Name_Cus = model.Name_Cus;
+                    book.Phone_Cus = model.Phone_Cus;
+                    book.Amount_Cus = model.Amount_Cus;
+                    book.RoomID = model.RoomID == null ? book.RoomID : model.RoomID;
+                    book.DateTime = model.DateTime;
+                    book.EndTime = model.EndTime;
+                    db.SaveChanges();
+                    return RedirectToAction("Admin_index");
+
+                }
+                return View(model);
             }
-            return View(model);
+            catch
+            {
+                return View();
+            }
         }
 
         //---------Order

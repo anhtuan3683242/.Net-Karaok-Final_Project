@@ -35,7 +35,7 @@ function setDataForLineChart(labels1, data1) {
         data: {
             labels: labels1,
             datasets: [{
-                label: "Earnings",
+                label: "Earnings: ",
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.05)",
                 borderColor: "rgba(78, 115, 223, 1)",
@@ -80,7 +80,7 @@ function setDataForLineChart(labels1, data1) {
                         padding: 10,
                         // Include a dollar sign in the ticks
                         callback: function (value, index, values) {
-                            return '$' + number_format(value);
+                            return number_format(value) + ' VND';
                         }
                     },
                     gridLines: {
@@ -112,7 +112,7 @@ function setDataForLineChart(labels1, data1) {
                 callbacks: {
                     label: function (tooltipItem, chart) {
                         var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                        return datasetLabel + number_format(tooltipItem.yLabel) + ' VND' ;
                     }
                 }
             }

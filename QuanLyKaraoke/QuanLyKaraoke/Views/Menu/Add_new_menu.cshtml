@@ -21,7 +21,10 @@
     }
 
 }
-<form id="form_post" action="#" method="post">
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
     <table class="table" id="tab2">
         <tbody>
             <tr>
@@ -29,10 +32,12 @@
                 <td>
                     @if (ViewBag.loai == 0)
                     {
-                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" });
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     }
                     else
                     {
+                        @Html.TextBoxFor(model => model.Food_ID, new { @class = "form-control", @type="hidden", @value= "@Model.Food_ID" })
                         @Html.HiddenFor(model => model.Name);
                         @Model.Name;
                     }
@@ -44,6 +49,7 @@
                 <td><p> Food Price</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                 </td>
 
             </tr>
@@ -51,6 +57,7 @@
                 <td><p> Stocks</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.Stock, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
                 </td>
 
             </tr>
@@ -61,5 +68,5 @@
             </tr>
         </tbody>
     </table>
-</form>
+}
 

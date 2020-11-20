@@ -30,10 +30,12 @@
                     @if (ViewBag.loai == 0)
                     {
                         @Html.TextBoxFor(model => model.Name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     }
                     else
                     {
                         @Html.TextBoxFor(model => model.Name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.S_ID);
                     }
 
@@ -44,6 +46,7 @@
                 <td><p> Phone</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                 </td>
 
             </tr>
@@ -52,7 +55,7 @@
                 <td>
                     <div class="form-group">
                         <label class="radio-inline">
-                            @Html.RadioButtonFor(model => model.Role, "Staff", new { @name = "role" })
+                            @Html.RadioButtonFor(model => model.Role, "Staff", new { @name = "role", @checked = "checked" })
                             <span style="font-size:18px;">Staff</span>
                         </label>
                         <label class="radio-inline">
@@ -70,14 +73,24 @@
             <tr>
                 <td><p> UserName</p></td>
                 <td>
-                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
-                </td>
+                    @if (ViewBag.loai == 0)
+                    {
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(model => model.UserName);
+                        @Model.UserName;
+                    }
 
+                </td>
             </tr>
             <tr>
                 <td><p> PassWord</p></td>
                 <td>
                     @Html.TextBoxFor(model => model.PassWord, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
                 </td>
 
             </tr>
