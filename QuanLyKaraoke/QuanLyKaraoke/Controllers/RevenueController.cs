@@ -66,6 +66,7 @@ namespace QuanLyKaraoke.Controllers
                 TypeRoom = typeRoom
             };
 
+            ViewBag.TotalYear = revenueDao.GetTotalYear();
 
             return View(model);
 

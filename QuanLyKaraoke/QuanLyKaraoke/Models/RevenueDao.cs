@@ -49,6 +49,11 @@ namespace QuanLyKaraoke.Models
             }
             return list.Max();
         }
+
+        public int GetTotalYear()
+        {
+            return db.Bookings.OrderBy(d => d.DateTime).Where(d => d.DateTime.Year == 2020).ToList().Sum(item => item.Total);
+        }
     }
 
 }
