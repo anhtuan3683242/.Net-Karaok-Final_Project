@@ -34,6 +34,7 @@ function clockTick() {
         minutes = currentTime.getMinutes(),
         seconds = currentTime.getSeconds(),
         text = (month + "/" + day + "/" + year + ' ' + hours + ':' + minutes + ':' + seconds);
+        document.getElementById('date_time').innerHTML = text;
     // here we get the element with the id of "date" and change the content to the text variable we made above
 }
 setInterval(clockTick, 1000);
