@@ -44,7 +44,7 @@
             //Tính thuế
             var Tax = (Model.Booking.Order.O_total + Model.Booking.Room.R_Price * Math.Round(Duration, 2)) * 10 / 100;
             //Tổng tiền
-            var Total = Hourly + Tax;
+            var Total = Hourly + Tax + Model.Booking.Order.O_total;
         }
         <div class="summary">
             <p>Total Services<span id="money" class="subtotal">@(Convert.ToDecimal(Model.Booking.Order.O_total).ToString("#,##0")) đ</span></p>
