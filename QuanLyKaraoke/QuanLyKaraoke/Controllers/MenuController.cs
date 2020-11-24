@@ -13,14 +13,9 @@ namespace QuanLyKaraoke.Controllers
         // GET: Menu
         public ActionResult Menu_Index()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
+            if (Session["S_ID"] != null)
             {
                 return View(new MenuDAO().getList());
-            }
-            else if (Session["S_ID"] != null)
-            {
-                TempData["ErrorMessage"] = "You are not authorized to access this page";
-                return RedirectToAction("Admin_index", "Home");
             }
             else
             {
@@ -47,15 +42,10 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult Add_new_menu()
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
+            if (Session["S_ID"] != null)
             {
                 ViewBag.Loai = 0;
                 return View(new Menu());
-            }
-            else if (Session["S_ID"] != null)
-            {
-                TempData["ErrorMessage"] = "You are not authorized to access this page";
-                return RedirectToAction("Admin_index", "Home");
             }
             else
             {
@@ -93,7 +83,7 @@ namespace QuanLyKaraoke.Controllers
         [HttpGet]
         public ActionResult EditInfo(int id)
         {
-            if (Session["S_ID"] != null && Session["Role"].ToString() != "Accountant")
+            if (Session["S_ID"] != null)
             {
                 ViewBag.Loai = 1;
 
@@ -103,11 +93,6 @@ namespace QuanLyKaraoke.Controllers
                     return RedirectToAction("Menu_index");
                 }
                 return View("Add_new_menu", menu);
-            }
-            else if (Session["S_ID"] != null)
-            {
-                TempData["ErrorMessage"] = "You are not authorized to access this page";
-                return RedirectToAction("Admin_index", "Home");
             }
             else
             {
